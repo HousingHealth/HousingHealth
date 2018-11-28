@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using HH.Models;
+using HH.DB.Models;
 
 
 namespace HH.DB.Models
