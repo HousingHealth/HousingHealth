@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HH.ViewModels
+namespace HH.DBQueries.DTOs
 {
-    public class PropertiesViewModels
+    public class PropertyDTO
     {
         public bool IsActive { get; set; }
         public DateTime CreatedByDate { get; set; }
