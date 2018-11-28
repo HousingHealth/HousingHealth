@@ -3,12 +3,20 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Housing Health Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
+
+
+
+
 <body>
+    <div>
+        <a href="#"><img src="~/images/ClevCodes-logo.png" /></a>
+    </div>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -17,23 +25,62 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+
+            <div class="navbar-collapse collapse" id="navbar">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>
+                        @Html.ActionLink("Search Property", "Index", "Home")
+                        <ul>
+                            <li><a href="#">Search History</a></li>
+                            <li><a href="#">Saved Properties</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        @Html.ActionLink("Property Reports", "About", "Home")
+                        <ul>
+                            <li><a href="#">Lead Risks</a></li>
+                            <li><a href="#">Other Hazards</a></li>
+                            <li><a href="#">Other Issues</a></li>
+                            <li><a href="#">Property Score</a></li>
+                            <li><a href="#">History Score</a></li>
+                            <li><a href="#">Compare Proprerties</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        @Html.ActionLink("Help", "Contact", "Home")
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        @Html.ActionLink("About", "Contact", "Home")
+                        <ul>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+    @*<div>
+            <a href="#"><img src="~/images/ClevCodes-logo.png" height="80" width="90" /></a>
+        </div>*@
     <div class="container body-content">
         @RenderBody()
+
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+
+
+
+
+        <footer id="footer">
+            <p>&copy; @DateTime.Now.Year - Housing Health </p>
         </footer>
     </div>
 
