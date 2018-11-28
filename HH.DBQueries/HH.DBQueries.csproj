@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +44,16 @@
   <ItemGroup>
     <Compile Include="QueryMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HH.DB\HH.DB.csproj">
+      <Project>{85d6251e-1c68-47b7-bc09-061189a81557}</Project>
+      <Name>HH.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HH\HH.Web.csproj">
+      <Project>{12129e14-ffe1-4692-80f1-f3e9a5a19630}</Project>
+      <Name>HH.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
