@@ -14,60 +14,7 @@
 
 
 <body>
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-
-                <div class="navbar-collapse collapse" id="navbar">
-
-                    <ul class="nav navbar-nav">
-
-                        <li>
-                            @Html.ActionLink("Search Property", "Index", "Home")
-                            <ul>
-                                <li><a href="#">Search History</a></li>
-                                <li><a href="#">Saved Properties</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            @Html.ActionLink("Property Reports", "About", "Home")
-                            <ul>
-                                <li><a href="#">Lead Risks</a></li>
-                                <li><a href="#">Other Hazards</a></li>
-                                <li><a href="#">Other Issues</a></li>
-                                <li><a href="#">Property Score</a></li>
-                                <li><a href="#">History Score</a></li>
-                                <li><a href="#">Compare Proprerties</a></li>
-                            </ul>
-
-                        </li>
-
-                        <li>
-                            @Html.ActionLink("Help", "Contact", "Home")
-                            <ul>
-                                <li><a href="#">FAQ</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            @Html.ActionLink("About", "Contact", "Home")
-                            <ul>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </div>
-        </div>*@
+    
     <div class="NavLogoContain">
         <div class="hh_topnav" id="myTopnav">
             <a href="#home" class="active">Home</a>
@@ -101,6 +48,7 @@
             <a href="#contact">Contact</a>
             <a href="#about">About</a>
             <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="navigationHH()">&#9776;</a>
+            @Html.Partial("_LoginPartial")
         </div>
 
         <div id="logo">
