@@ -5,13 +5,6 @@
 
 <h2>@ViewBag.Title.</h2>
 
-<div class="title">
-    <h1>Search</h1>
-</div>
-
-<div class="logo">
-    @*<img src=" " id="toggle" />*@
-</div>
 
 <div class="map">
     @*<a href="https://www.googlemaps.com">Area Map</a>*@
@@ -22,21 +15,22 @@
     <table>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Number)
+                @Html.EditorFor(model => model.Number)
             </th>
             <th></th>
             <th>
-                @Html.DisplayNameFor(model => model.Street)
+                @Html.EditorFor(model => model.Street)
             </th>
             <th></th>
             <th>
                 @*    @Html.DisplayNameFor(model => model.City)*@
             </th>
         </tr>
-        }
     </table>
 </fieldset>
 
+<br />
+<br />
 <div class="button">
     <button type="submit">Search</button>
 </div>

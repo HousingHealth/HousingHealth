@@ -1,43 +1,38 @@
-﻿using HH.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HH.ViewModels;
-using HH.Models.;
+using HH.DB.Models;
 
 namespace HH.Controllers
 {
     public class PropertiesController : Controller
     {
         private HousingHealthDB hhdb = new HousingHealthDB();
+        
         // GET: Properties
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Search/5
+        public ActionResult Search()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Search([Bind(Include = "Parcel,Date,Towner,Lsaleamt,Number,Street,BLOCK10,BLOCKGR10," +
             "Tract10,Pclass,Luc,Luc_descr,Yrbuilt,MAILNAME,Mailname1,MAIL_STREET_NUMBER,MAIL_STREET_DIRECTION," +
-            "MAIL_STREET_NAME,MAIL_STREET_SUFFIX,MAIL_CITY,MAIL_STATE,MAIL_ZIPCODE,TOTAL_NET_DELQ_BALANCE")] PropertiesViewModels props)
+            "MAIL_STREET_NAME,MAIL_STREET_SUFFIX,MAIL_CITY,MAIL_STATE,MAIL_ZIPCODE,TOTAL_NET_DELQ_BALANCE")] PropertiesViewModels pr)
         {
-            if (ModelState.IsValid)
-            {
 
-            }
-
-
-
-            if (number == null  || street == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var pr = new PropertiesViewModels();
+           // var pr = new PropertiesViewModels();
+          
             pr.Parcel = "123";
             pr.Date = DateTime.Now;
             pr.Towner = "Mills";
@@ -62,8 +57,16 @@ namespace HH.Controllers
             pr.MAIL_ZIPCODE = "60609";
             pr.TOTAL_NET_DELQ_BALANCE = "500";
 
+            if (ModelState.IsValid)
+            {
+                if (pr.Number == null || pr.Street == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+            }
+
             ViewBag.PropInfo = pr;
-            return View();
+            return View("Results", pr);
 
             //QueryMethods results = new QueryMethods.GetPropertyInfo();
 
