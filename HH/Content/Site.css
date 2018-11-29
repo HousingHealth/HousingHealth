@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    background-color:ghostwhite;
     padding-bottom: 20px;
 }
 
@@ -21,4 +21,153 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+#NavLogoContain {
+    width: 100%;
+    height: auto;
+    border: 1px thin black;
+}
+
+/*#spacer1{
+    width:100%;
+    height:2px;
+}*/
+
+.logoimg {
+    max-width: 100%;
+    height: auto;
+    padding-bottom:3px;
+    padding-left:3px;
+}
+
+
+/* Add a black background color to the top navigation */
+.hh_topnav {
+    width: 80%;
+    background-color:darkblue;
+    overflow: hidden;
+    float: right;
+}
+
+    /* Style the links inside the navigation bar */
+    .hh_topnav a {
+        float: left;
+        display: block;
+        color: #FFF;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+/* Add an active class to highlight the current page */
+.active {
+    background-color: darkblue;
+    color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.hh_topnav .icon {
+    display: none;
+}
+
+/* Dropdown container - needed to position the dropdown content */
+.hh_dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+    /* Style the dropdown button to fit inside the topnav */
+    .hh_dropdown .hh_dropbtn {
+        font-size: 17px;
+        border: none;
+        outline: none;
+        color: lightblue;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+
+/* Style the dropdown content (hidden by default) */
+.hh_dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    /* Style the links inside the dropdown */
+    .hh_dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+/* Add a dark background on topnav links and the dropdown button on hover */
+.hh_topnav a:hover, .hh_dropdown:hover .hh_dropbtn {
+    background-color: darkblue;
+    color: white;
+}
+
+/* Add a grey background to dropdown links on hover */
+.hh_dropdown-content a:hover {
+    background-color: white;
+    color: darkblue;
+}
+
+/* Show the dropdown menu when the user moves the mouse over the dropdown button */
+.hh_dropdown:hover .hh_dropdown-content {
+    display: block;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+    .hh_topnav a:not(:first-child), .hh_dropdown .hh_dropbtn {
+        display: none;
+    }
+
+    .hh_topnav a.icon {
+        float: right;
+        display: block;
+    }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+    .hh_topnav.responsive {
+        position: relative;
+    }
+
+        .hh_topnav.responsive a.icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .hh_topnav.responsive a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+
+        .hh_topnav.responsive .hh_dropdown {
+            float: none;
+        }
+
+        .hh_topnav.responsive .hh_dropdown-content {
+            position: relative;
+        }
+
+        .hh_topnav.responsive .hh_dropdown .hh_dropbtn {
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
 }

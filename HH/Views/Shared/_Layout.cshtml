@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Housing Health Application</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -13,66 +14,104 @@
 
 
 <body>
-    <div>
-        <a href="#"><img src="~/images/ClevCodes-logo.png" /></a>
-    </div>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                <div class="navbar-collapse collapse" id="navbar">
+
+                    <ul class="nav navbar-nav">
+
+                        <li>
+                            @Html.ActionLink("Search Property", "Index", "Home")
+                            <ul>
+                                <li><a href="#">Search History</a></li>
+                                <li><a href="#">Saved Properties</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Property Reports", "About", "Home")
+                            <ul>
+                                <li><a href="#">Lead Risks</a></li>
+                                <li><a href="#">Other Hazards</a></li>
+                                <li><a href="#">Other Issues</a></li>
+                                <li><a href="#">Property Score</a></li>
+                                <li><a href="#">History Score</a></li>
+                                <li><a href="#">Compare Proprerties</a></li>
+                            </ul>
+
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Help", "Contact", "Home")
+                            <ul>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("About", "Contact", "Home")
+                            <ul>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
-
-            <div class="navbar-collapse collapse" id="navbar">
-                <ul class="nav navbar-nav">
-                    <li>
-                        @Html.ActionLink("Search Property", "Index", "Home")
-                        <ul>
-                            <li><a href="#">Search History</a></li>
-                            <li><a href="#">Saved Properties</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        @Html.ActionLink("Property Reports", "About", "Home")
-                        <ul>
-                            <li><a href="#">Lead Risks</a></li>
-                            <li><a href="#">Other Hazards</a></li>
-                            <li><a href="#">Other Issues</a></li>
-                            <li><a href="#">Property Score</a></li>
-                            <li><a href="#">History Score</a></li>
-                            <li><a href="#">Compare Proprerties</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        @Html.ActionLink("Help", "Contact", "Home")
-                        <ul>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        @Html.ActionLink("About", "Contact", "Home")
-                        <ul>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    @*<div>
-            <a href="#"><img src="~/images/ClevCodes-logo.png" height="80" width="90" /></a>
         </div>*@
+    <div class="NavLogoContain">
+        <div class="hh_topnav" id="myTopnav">
+            <a href="#home" class="active">Home</a>
+            <div class="hh_dropdown">
+                <button class="hh_dropbtn">
+                    Search Properties
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="hh_dropdown-content">
+                    @Html.ActionLink("Search Property", "Index", "Home")
+                    <a href="#">Search History</a>
+                    <a href="#">Saved Properties</a>
+                </div>
+            </div>
+            <div class="hh_dropdown">
+                <button class="hh_dropbtn">
+                    Property Reports
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="hh_dropdown-content">
+                    @Html.ActionLink("Property Reports", "About", "Home")
+                    <a href="#">Lead Risks</a>
+                    <a href="#">Other Hazards</a>
+                    <a href="#">Other Issues</a>
+                    <a href="#">Property Score</a>
+                    <a href="#">History Score</a>
+                    <a href="#">Compare Proprerties</a>
+                </div>
+            </div>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="navigationHH()">&#9776;</a>
+        </div>
+
+        <div id="logo">
+            <a href="~/Views/Home/Contact.cshtml"><img src="~/images/ClevCodes-logo.png" id="logoimg" /></a>
+        </div>
+
+    </div>
+
     <div class="container body-content">
         @RenderBody()
+        <p></p>
 
         <hr />
 
@@ -87,5 +126,19 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+
+    <script>
+        function navigationHH() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "hh_topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "hh_topnav";
+            }
+        }
+    </script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+
 </body>
 </html>
