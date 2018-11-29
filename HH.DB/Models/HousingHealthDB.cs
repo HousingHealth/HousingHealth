@@ -1,4 +1,4 @@
-﻿using HH.Models;
+﻿using HH.DB.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
