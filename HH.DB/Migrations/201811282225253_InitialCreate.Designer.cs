@@ -13,7 +13,7 @@ namespace HH.DB.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201811271542351_InitialCreate"; }
+            get { return "201811282225253_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
