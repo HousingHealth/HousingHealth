@@ -1586,6 +1586,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  clear: both;
 }
 @media (min-width: 768px) {
   .container {
@@ -4281,7 +4282,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   float: left;
   height: 50px;
   padding: 15px 15px;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 20px;
 }
 .navbar-brand:hover,
@@ -4308,7 +4309,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
-  /*background-color:yellow;*/
+ 
 }
 .navbar-toggle:focus {
   outline: 0;
@@ -4355,6 +4356,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-nav .open .dropdown-menu > li > a {
     line-height: 20px;
+    color: aqua;
   }
   .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-nav .open .dropdown-menu > li > a:focus {
@@ -4486,7 +4488,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar-text {
-    float: left;
+    float: right;
     margin-right: 15px;
     margin-left: 15px;
   }
