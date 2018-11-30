@@ -20,6 +20,27 @@ namespace HH.Controllers
         {
             return View();
         }
+        
+        public ActionResult LeadRisk([Bind(Include = "BLOCK10,tract10,yrbuilt")] LeadRisk lr)
+        {
+
+            lr.BLOCK10 = "block";
+            lr.tract10 = "trac";
+            lr.yrbuilt = 1950;
+
+// //           if (ModelState.IsValid)
+//            {
+//                if (lr.BLOCK10 == null)
+//                {
+//                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+//                }
+//            }
+////
+            return View("LeadRisk", lr);
+        }
+
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
