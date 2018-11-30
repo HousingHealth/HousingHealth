@@ -2,36 +2,27 @@
 @{
     ViewBag.Title = "Search";
 }
-
-<h2>@ViewBag.Title.</h2>
-
+<h2>@ViewBag.Title</h2>
 
 <div class="map">
     @*<a href="https://www.googlemaps.com">Area Map</a>*@
 </div>
+@using (Html.BeginForm("Search", "Properties", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
 
+    @Html.AntiForgeryToken()
 
-<fieldset>
-    <table>
-        <tr>
-            <th>
-                @Html.EditorFor(model => model.Number)
-            </th>
-            <th></th>
-            <th>
-                @Html.EditorFor(model => model.Street)
-            </th>
-            <th></th>
-            <th>
-                @*    @Html.DisplayNameFor(model => model.City)*@
-            </th>
-        </tr>
-    </table>
-</fieldset>
+    <div class="form-horizontal">
 
-<br />
-<br />
-<div class="button">
-    <button type="submit">Search</button>
-</div>
-
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <h5>Number</h5>
+        @Html.TextBox("Number", null, new { @class = "form-control", id = "Number", autofocus = "autofocus", onFocus = "this.select()" })
+        <h5>Street</h5>
+        @Html.TextBox("Street", null, new { @class = "form-control", id = "Street" })
+        <br />
+        <br />
+        <div class="button">
+            <input type="submit" value="Search" id="submitBtn" />
+        </div>      
+    </div>
+}
