@@ -73,7 +73,7 @@ namespace HH.Controllers
             pr.MAIL_CITY = "Chicago";
             pr.MAIL_STATE = "Ill";
             pr.MAIL_ZIPCODE = "60609";
-            pr.TOTAL_NET_DELQ_BALANCE = "500";
+            pr.TOTAL_NET_DELQ_BALANCE = 500;
 
             if (ModelState.IsValid)
             {
@@ -129,7 +129,6 @@ namespace HH.Controllers
 
             if (ModelState.IsValid)
             {
-                //   call to DBQueries
                 return RedirectToAction("Search");
             }
             return View();   //View(properties);
@@ -142,6 +141,27 @@ namespace HH.Controllers
                 //db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Map()
+        {
+            return View();
+        }
+
+        public ActionResult SearchAddr()
+        {
+            string addr = "2418 Woodland Ave, Cleveland, OH";
+            ViewBag.Address = addr;
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult SearchAddr(string address)
+        {
+            ViewBag.Address = address;
+            return View();
+
         }
     }
 }
