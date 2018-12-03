@@ -1,127 +1,133 @@
 ﻿@model HH.ViewModels.PropertiesViewModels
-@{
-    ViewBag.Title = "Results";
-}
 
-<h2>@ViewBag.Title.</h2>
-
-<div class="title">
-    @*<h1>Results</h1>*@
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.Number)
+    : @Html.DisplayFor(m => m.Number)
 </div>
 
-<div class="logo">
-    @*<img src=" " id="toggle" />*@
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.Street)
+        : @Html.DisplayFor(m => m.Street)
 </div>
 
-<fieldset>
-    <table>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Number)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Street)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Yrbuilt)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Parcel)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pclass)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Luc)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Luc_descr)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tract10)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.BLOCK10)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.BLOCKGR10)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lsaleamt)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Towner)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.MAILNAME)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mailname1)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.MAIL_STREET_NUMBER)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.MAIL_STREET_DIRECTION)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.MAIL_STREET_NAME)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.MAIL_STREET_SUFFIX)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.MAIL_CITY)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.MAIL_STATE)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.MAIL_ZIPCODE)
-            </th>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.TOTAL_NET_DELQ_BALANCE)
-            </th>
-        </tr>
-    </table>
-</fieldset>
 
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.Yrbuilt)    
+        : @Html.DisplayFor(m => m.Yrbuilt)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.Parcel) 
+        : @Html.DisplayFor(m => m.Parcel)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.Pclass)     
+        : @Html.DisplayFor(m => m.Pclass)
+    </div>
+
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.Luc)     
+        : @Html.DisplayFor(m => m.Luc)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.Luc_descr)     
+        : @Html.DisplayFor(m => m.Luc_descr)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.Tract10)     
+        : @Html.DisplayFor(m => m.Tract10)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.BLOCK10)     
+        : @Html.DisplayFor(m => m.BLOCK10)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.BLOCKGR10)      
+        : @Html.DisplayFor(m => m.BLOCKGR10)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.Date)      
+        : @Html.DisplayFor(m => m.Date)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.Lsaleamt)     
+        : @Html.DisplayFor(m => m.Lsaleamt)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.Towner)     
+        : @Html.DisplayFor(m => m.Towner)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.MAILNAME)     
+        : @Html.DisplayFor(m => m.MAILNAME)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.Mailname1)      
+        : @Html.DisplayFor(m => m.Mailname1)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.MAIL_STREET_NUMBER)     
+        : @Html.DisplayFor(m => m.MAIL_STREET_NUMBER)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.MAIL_STREET_DIRECTION)      
+        : @Html.DisplayFor(m => m.MAIL_STREET_DIRECTION)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.MAIL_STREET_NAME)      
+        : @Html.DisplayFor(m => m.MAIL_STREET_NAME)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.MAIL_STREET_SUFFIX)      
+        : @Html.DisplayFor(m => m.MAIL_STREET_SUFFIX)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.MAIL_CITY)      
+        : @Html.DisplayFor(m => m.MAIL_CITY)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.MAIL_STATE)     
+        : @Html.DisplayFor(m => m.MAIL_STATE)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.MAIL_ZIPCODE)      
+        : @Html.DisplayFor(m => m.MAIL_ZIPCODE)
+    </div>
+
+<div class="form-group">
+    @Html.DisplayNameFor(m => m.TOTAL_NET_DELQ_BALANCE)      
+    : @Html.DisplayFor(m => m.TOTAL_NET_DELQ_BALANCE)
+    </div>
 
 @*[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]*@
 
 <div class="button">
-    <button id="search">Click For Housing Health</button>
+    <input type="submit" value="Click For Housing Health" id="submitBtn" />
 </div>
 
 <div class="button">
-    <button id="search">Refresh</button>
+    <input type="button" value="Return" onclick="location.href='@Url.Action("Search", "Properties")'"   class="btn btn-default"/>
 </div>
 
-<div class="map">
+@*<div class="map">
     <a href="https://www.googlemaps.com">Area Map</a>
-</div>
+</div>*@
