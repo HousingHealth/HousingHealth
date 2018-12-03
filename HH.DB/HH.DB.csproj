@@ -82,6 +82,18 @@
     <Compile Include="Migrations\201811282225253_InitialCreate.Designer.cs">
       <DependentUpon>201811282225253_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811301653373_AddTaxTrsfrObsevervations.cs" />
+    <Compile Include="Migrations\201811301653373_AddTaxTrsfrObsevervations.Designer.cs">
+      <DependentUpon>201811301653373_AddTaxTrsfrObsevervations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812031647194_addSavedProperties.cs" />
+    <Compile Include="Migrations\201812031647194_addSavedProperties.Designer.cs">
+      <DependentUpon>201812031647194_addSavedProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812031804369_CorrectFixedLengthFields.cs" />
+    <Compile Include="Migrations\201812031804369_CorrectFixedLengthFields.Designer.cs">
+      <DependentUpon>201812031804369_CorrectFixedLengthFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseFields.cs" />
@@ -105,6 +117,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811282225253_InitialCreate.resx">
       <DependentUpon>201811282225253_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301653373_AddTaxTrsfrObsevervations.resx">
+      <DependentUpon>201811301653373_AddTaxTrsfrObsevervations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812031647194_addSavedProperties.resx">
+      <DependentUpon>201812031647194_addSavedProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812031804369_CorrectFixedLengthFields.resx">
+      <DependentUpon>201812031804369_CorrectFixedLengthFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
