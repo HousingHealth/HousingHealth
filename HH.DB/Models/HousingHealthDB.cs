@@ -13,5 +13,6 @@ namespace HH.DB.Models
         public DbSet<Properties> Properties { get; set; }
         public DbSet<RentalRegistrations> RentalRegistrations { get; set; }
         public DbSet<OwnershipFreq> OwnershipFreq { get; set; }
+        public DbSet<SavedProperties> Property { get; set; }
     }
 }
