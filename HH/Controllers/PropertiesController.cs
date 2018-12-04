@@ -20,25 +20,20 @@ namespace HH.Controllers
         {
             return View();
         }
-        
-        public ActionResult LeadRisk([Bind(Include = "BLOCK10,tract10,yrbuilt")] LeadRisk lr)
+
+
+        //https://localhost:44366/properties/leadrisk?propertyID=3
+        public ActionResult LeadRisk(int propertyID)
         {
+            //1. In DBQueries, create a query to retrieve the Observation by propertyID
 
-            lr.BLOCK10 = "block";
-            lr.tract10 = "trac";
-            lr.yrbuilt = 1950;
 
-// //           if (ModelState.IsValid)
-//            {
-//                if (lr.BLOCK10 == null)
-//                {
-//                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-//                }
-//            }
-////
-            return View("LeadRisk", lr);
+            //2. Copy fields from the query in step 1 into LeadRiskVM
+            LeadRiskVM lrVM = new LeadRiskVM();
+
+
+            return View(lrVM);
         }
-
 
 
 

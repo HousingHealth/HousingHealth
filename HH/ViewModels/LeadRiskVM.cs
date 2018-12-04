@@ -5,7 +5,7 @@ using System.Web;
 
 namespace HH.ViewModels
 {
-    public class LeadRisk
+    public class LeadRiskVM
     {
         public int yrbuilt { get; set;}
         public string tract10 { get; set;}
