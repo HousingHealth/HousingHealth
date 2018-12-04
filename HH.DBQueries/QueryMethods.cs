@@ -46,38 +46,7 @@ namespace HH.DBQueries
                             MAIL_ZIPCODE = prop.MAIL_ZIPCODE,
                             TOTAL_NET_DELQ_BALANCE = prop.TOTAL_NET_DELQ_BALANCE
                         }).First();
-
                 return propinfo;
         }
-
-
     }
 }
-//List<PropertiesViewModels> propertiesVM = propinfo.Select(item => new PropertiesViewModels()
-//{
-//    IsActive = item.IsActive,
-//    CreatedByDate = item.CreatedByDate,
-//    Parcel = item.Parcel,
-//    Date = item.Date,
-//    Towner = item.Towner,
-//    Lsaleamt = item.Lsaleamt,
-//    Number = item.Number,
-//    Street = item.Street,
-//    Tract10 = item.Tract10,
-//    BLOCK10 = item.BLOCK10,
-//    BLOCKGR10 = item.BLOCKGR10,
-//    Pclass = item.Pclass,
-//    Luc = item.Luc,
-//    Luc_descr = item.Luc_descr,
-//    Yrbuilt = item.Yrbuilt,
-//    MAILNAME = item.MAILNAME,
-//    Mailname1 = item.Mailname1,
-//    MAIL_STREET_NUMBER = item.MAIL_STREET_NUMBER,
-//    MAIL_STREET_DIRECTION = item.MAIL_STREET_DIRECTION,
-//    MAIL_STREET_NAME = item.MAIL_STREET_NAME,
-//    MAIL_STREET_SUFFIX = item.MAIL_STREET_SUFFIX,
-//    MAIL_CITY = item.MAIL_CITY,
-//    MAIL_STATE = item.MAIL_STATE,
-//    MAIL_ZIPCODE = item.MAIL_ZIPCODE,
-//    TOTAL_NET_DELQ_BALANCE = item.TOTAL_NET_DELQ_BALANCE
-//}).ToList();

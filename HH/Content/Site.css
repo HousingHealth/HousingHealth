@@ -23,10 +23,18 @@ textarea {
     max-width: 280px;
 }
 
+
+/*IDs*/
 #NavLogoContain {
     width: 100%;
     height: auto;
     border: 1px thin black;
+}
+
+#mapBox {
+    width: 80%;
+    height: auto;
+    padding-bottom: 20px;
 }
 
 /*#spacer1{
@@ -41,6 +49,21 @@ textarea {
     padding-left:3px;
 }
 
+
+form-horizontal {
+    float: none;
+    width: 90%;
+    height: auto;
+}
+
+
+.map {
+    float: left;
+    padding: 10px;
+    width: 20%;
+    height: auto;
+  
+}
 
 /* Add a black background color to the top navigation */
 .hh_topnav {
@@ -170,4 +193,5 @@ textarea {
             width: 100%;
             text-align: left;
         }
+
 }
