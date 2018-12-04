@@ -204,6 +204,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\SavedPropertiesVM.cs" />
     <Compile Include="ViewModels\PropertiesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +275,7 @@
     <Content Include="Views\Properties\Results.cshtml" />
     <Content Include="Views\Properties\Map.cshtml" />
     <Content Include="Views\Properties\SearchAddr.cshtml" />
+    <Content Include="Views\Properties\SavedProperties.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
