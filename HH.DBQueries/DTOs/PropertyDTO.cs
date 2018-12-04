@@ -8,6 +8,7 @@ namespace HH.DBQueries.DTOs
 {
     public class PropertyDTO
     {
+        public int ID { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedByDate { get; set; }
         public int User_ID { get; set; }

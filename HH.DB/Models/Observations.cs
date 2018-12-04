@@ -12,7 +12,7 @@ namespace HH.DB.Models
         public virtual DateTime time_stamp { get; set; }
 
         [MaxLength(255)]
-        public virtual char value { get; set; }
+        public virtual string value { get; set; }
     }
 
 }
