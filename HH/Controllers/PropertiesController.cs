@@ -1,5 +1,5 @@
-﻿using HH.DB.Models;
-using HH.DBQueries;
+﻿using HH.DBQueries;
+using HH.DBQueries.DTOs;
 using HH.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
@@ -11,8 +11,6 @@ namespace HH.Controllers
 {
     public class PropertiesController : Controller
     {
-        private HousingHealthDB hhdb = new HousingHealthDB();
-        
         // GET: Properties
         public ActionResult Index()
         {
@@ -24,39 +22,11 @@ namespace HH.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Search([Bind(Include = "Parcel,Date,Towner,Lsaleamt,Number,Street,BLOCK10,BLOCKGR10," +
-            "Tract10,Pclass,Luc,Luc_descr,Yrbuilt,MAILNAME,Mailname1,MAIL_STREET_NUMBER,MAIL_STREET_DIRECTION," +
-            "MAIL_STREET_NAME,MAIL_STREET_SUFFIX,MAIL_CITY,MAIL_STATE,MAIL_ZIPCODE,TOTAL_NET_DELQ_BALANCE")] PropertiesViewModels pr)
+        public ActionResult Search([Bind(Include = "Number,Street")] PropertiesViewModels pr)
         {
-
-           // var pr = new PropertiesViewModels();
-          
-            pr.Parcel = "123";
-            pr.Date = DateTime.Now;
-            pr.Towner = "Mills";
-            pr.Lsaleamt = 23000;
-            pr.Number = "2323";
-            pr.Street = "main";
-            pr.BLOCK10 = "block";
-            pr.BLOCKGR10 = "block group";
-            pr.Tract10 = "trac";
-            pr.Pclass = "residential";
-            pr.Luc = "51";
-            pr.Luc_descr = "good";
-            pr.Yrbuilt = 1950;
-            pr.MAILNAME = "Mr Mills";
-            pr.Mailname1 = "Mrs Mills";
-            pr.MAIL_STREET_NUMBER = "54";
-            pr.MAIL_STREET_DIRECTION = "N";
-            pr.MAIL_STREET_NAME = "Wrigley";
-            pr.MAIL_STREET_SUFFIX = "Ave";
-            pr.MAIL_CITY = "Chicago";
-            pr.MAIL_STATE = "Ill";
-            pr.MAIL_ZIPCODE = "60609";
-            pr.TOTAL_NET_DELQ_BALANCE = 500;
-
             if (ModelState.IsValid)
             {
                 if (pr.Number == null || pr.Street == null)
@@ -65,9 +35,36 @@ namespace HH.Controllers
                 }
             }
 
-            ViewBag.PropInfo = pr;
-            //return View("Results", pr);  //original location          
+            QueryMethods qm = new QueryMethods();
 
+            PropertyDTO res = qm.GetPropertyInfo(pr.Number, pr.Street);
+            {
+                pr.Parcel = res.Parcel;
+                pr.Date = res.Date;
+                pr.Towner = res.Towner;
+                pr.Lsaleamt = res.Lsaleamt;
+                pr.Number = res.Number;
+                pr.Street = res.Street;
+                pr.BLOCK10 = res.BLOCK10;
+                pr.BLOCKGR10 = res.BLOCKGR10;
+                pr.Tract10 = res.Tract10;
+                pr.Pclass = res.Pclass;
+                pr.Luc = res.Luc;
+                pr.Luc_descr = res.Luc_descr;
+                pr.Yrbuilt = res.Yrbuilt;
+                pr.MAILNAME = res.MAILNAME;
+                pr.Mailname1 = res.Mailname1;
+                pr.MAIL_STREET_NUMBER = res.MAIL_STREET_NUMBER;
+                pr.MAIL_STREET_DIRECTION = res.MAIL_STREET_DIRECTION;
+                pr.MAIL_STREET_NAME = res.MAIL_STREET_NAME;
+                pr.MAIL_STREET_SUFFIX = res.MAIL_STREET_SUFFIX;
+                pr.MAIL_CITY = res.MAIL_CITY;
+                pr.MAIL_STATE = res.MAIL_STATE;
+                pr.MAIL_ZIPCODE = res.MAIL_ZIPCODE;
+                pr.TOTAL_NET_DELQ_BALANCE = Convert.ToDecimal(res.TOTAL_NET_DELQ_BALANCE);
+                
+                return View("Results", pr);
+            }
            var searhHistoryRec = new SearchHistory
             {
                //Properties = pr,  //Get this from Jack when he's done
@@ -82,17 +79,14 @@ namespace HH.Controllers
             return View("Results", pr);
         }
 
-        // GET: Results Page
+
         [HttpGet]
         public ActionResult Results()
         {
             return View();
         }
 
-        //Post: Properties/Edit 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-
         public ActionResult Create([Bind(Include = "number, street")] ViewModels.PropertiesViewModels results)
         {
 
@@ -100,7 +94,7 @@ namespace HH.Controllers
             {
                 return RedirectToAction("Search");
             }
-            return View();   //View(properties);
+            return View(); 
         }
 
         protected override void Dispose(bool disposing)
@@ -116,7 +110,7 @@ namespace HH.Controllers
         {
             return View();
         }
-
+     
         public ActionResult SearchAddr()
         {
             string addr = "2418 Woodland Ave, Cleveland, OH";
