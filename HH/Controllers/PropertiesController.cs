@@ -1,6 +1,9 @@
 ﻿using HH.DB.Models;
+using HH.DBQueries;
 using HH.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
 
@@ -63,33 +66,20 @@ namespace HH.Controllers
             }
 
             ViewBag.PropInfo = pr;
+            //return View("Results", pr);  //original location          
+
+           var searhHistoryRec = new SearchHistory
+            {
+               //Properties = pr,  //Get this from Jack when he's done
+               CreatedByDate = DateTime.Now,
+               CreatedByUser = hhdb.Users.Find(User.Identity.GetUserId()),
+               IsActive = true
+           };
+
+            hhdb.SearchHistory.Add(searhHistoryRec);
+            hhdb.SaveChanges();
+
             return View("Results", pr);
-
-            //QueryMethods results = new QueryMethods.GetPropertyInfo();
-
-            //Parcel = item.Parcel,
-            //Date = item.Date,
-            //Towner = item.Towner,
-            //Lsaleamt = item.Lsaleamt,
-            //Number = item.Number,
-            //Street = item.Street,
-            //BLOCK10 = item.BLOCK10,
-            //BLOCKGR10 = item.BLOCKGR10,
-            //Tract10 = item.Tract10,
-            //Pclass = item.Pclass,
-            //Luc = item.Luc,
-            //Luc_descr = item.Luc_descr,
-            //Yrbuilt = item.Yrbuilt,
-            //MAILNAME = item.MAILNAME,
-            //Mailname1 = item.Mailname1,
-            //MAIL_STREET_NUMBER = item.MAIL_STREET_NUMBER,
-            //MAIL_STREET_DIRECTION = item.MAIL_STREET_DIRECTION,
-            //MAIL_STREET_NAME = item.MAIL_STREET_NAME,
-            //MAIL_STREET_SUFFIX = item.MAIL_STREET_SUFFIX,
-            //MAIL_CITY = item.MAIL_CITY,
-            //MAIL_STATE = item.MAIL_STATE,
-            //MAIL_ZIPCODE = item.MAIL_ZIPCODE,
-            //TOTAL_NET_DELQ_BALANCE = item.TOTAL_NET_DELQ_BALANCE
         }
 
         // GET: Results Page
@@ -132,7 +122,6 @@ namespace HH.Controllers
             string addr = "2418 Woodland Ave, Cleveland, OH";
             ViewBag.Address = addr;
             return View();
-
         }
 
         [HttpPost]
@@ -140,7 +129,31 @@ namespace HH.Controllers
         {
             ViewBag.Address = address;
             return View();
+        }
 
+
+
+        [HttpGet]
+        public ActionResult SearchHistory()
+        {            
+            QueryMethods qm = new QueryMethods();
+            var results = qm.GetSearchHistories();
+
+            List<SearchHistoryViewModel> vmList = new List<SearchHistoryViewModel>();
+
+            foreach (var item in results)
+            {
+                vmList.Add(new SearchHistoryViewModel()
+                {
+                    number = item.Number,
+                    street = item.Street,
+                    date = item.CreatedByDate,
+
+                });
+            };
+
+            return View(vmList);
+                  
         }
     }
 }

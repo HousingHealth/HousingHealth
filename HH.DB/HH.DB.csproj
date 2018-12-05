@@ -101,6 +101,7 @@
     <Compile Include="Models\OwnershipFreq.cs" />
     <Compile Include="Models\Properties.cs" />
     <Compile Include="Models\RentalRegistrations.cs" />
+    <Compile Include="Models\SearchHistory.cs" />
     <Compile Include="Models\Tax_records.cs" />
     <Compile Include="Models\Transfers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
