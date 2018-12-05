@@ -1,6 +1,6 @@
 ﻿
 function init_map() {
-    var address = "Cleveland, Ohio".val();
+    var address = $("#number").text() + $("#street").text();
     var geocoder = new google.maps.Geocoder();
     var latitude = 52.3800447;          //Set default value in case address is null.
     var longitude = 9.728811599999972;  //Set default value in case address is null.
@@ -29,6 +29,5 @@ function init_map() {
         }
     });
 }
-
 
 google.maps.event.addDomListener(window, 'load', init_map);

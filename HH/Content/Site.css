@@ -48,21 +48,19 @@ textarea {
     padding-bottom:3px;
     padding-left:3px;
 }
-
+#form-fields {
+    width: 50%;
+    height: auto;
+    padding: 0%;
+    margin: 0%;
+    display: inline-block;
+    float: left;
+}
 
 form-horizontal {
     float: none;
     width: 90%;
     height: auto;
-}
-
-
-.map {
-    float: left;
-    padding: 10px;
-    width: 20%;
-    height: auto;
-  
 }
 
 /* Add a black background color to the top navigation */
