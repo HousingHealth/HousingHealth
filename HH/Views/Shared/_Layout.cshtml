@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Housing Health Application</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 
 <body>
@@ -49,36 +49,38 @@
         </div>
 
         <div id="logo">
-            <a href="~/Views/Home/Contact.cshtml"><img src="~/images/ClevCodes-logo.png" id="logoimg" style="height:80px !important;" /></a>
+            <a href="~/Views/Home/Contact.cshtml"><img src="~/images/CClogo.png" id="logoimg" style="height:60px !important;" /></a>   
+        </div>
+
+
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+
+            <footer id="footer">
+                <p>&copy; @DateTime.Now.Year - Housing Health </p>
+            </footer>
+
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-
-        <footer id="footer">
-            <p>&copy; @DateTime.Now.Year - Housing Health </p>
-        </footer>        
-
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 
 
-    <script>
-        function navigationHH() {
-            var x = document.getElementById("myTopnav");
-            if (x.className === "hh_topnav") {
-                x.className += " responsive";
-            } else {
-                x.className = "hh_topnav";
+        <script>
+            function navigationHH() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "hh_topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "hh_topnav";
+                }
             }
-        }
-    </script>
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-
+        </script>
+        <script src="~/Scripts/jquery-3.3.1.js"></script>
 </body>
+
 </html>
