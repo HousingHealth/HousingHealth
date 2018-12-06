@@ -1,4 +1,5 @@
 ﻿using HH.DB.Models;
+using HH.DBQueries;
 using HH.ViewModels;
 using System;
 using System.Net;
@@ -129,11 +130,9 @@ namespace HH.Controllers
 
         public ActionResult SearchAddr()
         {
-            string addr = "2418 Woodland Ave, Cleveland, OH";
-            ViewBag.Address = addr;
             return View();
-
         }
+
 
         [HttpPost]
         public ActionResult SearchAddr(string address)
@@ -142,5 +141,14 @@ namespace HH.Controllers
             return View();
 
         }
+
+        public ActionResult DisplayMarkers()
+        {
+            AddressQuery addr = new AddressQuery();
+            ViewBag.FullAddressList = addr.GetAddressInfo();
+            return View();
+        }
+
+
     }
 }

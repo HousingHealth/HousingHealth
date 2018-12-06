@@ -224,6 +224,7 @@
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\DisplayMap.js" />
+    <Content Include="Scripts\DispMultipleMarkers.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -272,6 +273,7 @@
     <Content Include="Views\Properties\Results.cshtml" />
     <Content Include="Views\Properties\Map.cshtml" />
     <Content Include="Views\Properties\SearchAddr.cshtml" />
+    <Content Include="Views\Properties\DisplayMarkers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
