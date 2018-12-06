@@ -2,9 +2,9 @@
 
 namespace HH.DB.Models
 {
-  public   class Observation_types : BaseFields
+  public class Observation_types : BaseFields
     {
         [MaxLength(255)]
-        public virtual char name { get; set; }
+        public virtual string name { get; set; }
     }
 }

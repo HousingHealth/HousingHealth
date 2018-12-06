@@ -1,0 +1,183 @@
+﻿@model IEnumerable<HH.ViewModels.PropertiesViewModels>
+
+@{
+    ViewBag.Title = "SavedProperties";
+}
+
+<h2>SavedProperties</h2>
+
+<p>
+    @Html.ActionLink("Delete", "Delete")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedByDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parcel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Towner)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lsaleamt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tract10)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BLOCK10)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BLOCKGR10)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pclass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Luc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Luc_descr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Yrbuilt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAILNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mailname1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAIL_STREET_NUMBER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAIL_STREET_DIRECTION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAIL_STREET_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAIL_STREET_SUFFIX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAIL_CITY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAIL_STATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAIL_ZIPCODE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TOTAL_NET_DELQ_BALANCE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedByDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parcel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Towner)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lsaleamt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Street)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tract10)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BLOCK10)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BLOCKGR10)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pclass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Luc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Luc_descr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Yrbuilt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAILNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mailname1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAIL_STREET_NUMBER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAIL_STREET_DIRECTION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAIL_STREET_NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAIL_STREET_SUFFIX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAIL_CITY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAIL_STATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAIL_ZIPCODE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TOTAL_NET_DELQ_BALANCE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
