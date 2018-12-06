@@ -17,16 +17,19 @@
     
     <div class="NavLogoContain">
         <div class="hh_topnav" id="myTopnav">
-            <a href="#home" class="active">Home</a>
+            <a href="~/Home/Index" class="active">Home</a>
+
             <div class="hh_dropdown">
                 <button class="hh_dropbtn">
                     Search Properties
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="hh_dropdown-content">
-                    @Html.ActionLink("Search Property", "Index", "Home")
-                    <a href="#">Search History</a>
-                    <a href="#">Saved Properties</a>
+                    @Html.ActionLink("Search Property", "Search", "Properties")
+
+                    @Html.ActionLink("Search History", "SearchHistory", "Properties")
+
+                    @Html.ActionLink("Saved Properties", "SavedProperties", "Properties")
                 </div>
             </div>
             <div class="hh_dropdown">
@@ -35,24 +38,33 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="hh_dropdown-content">
-                    @Html.ActionLink("Property Reports", "About", "Home")
-                    <a href="#">Lead Risks</a>
-                    <a href="#">Other Hazards</a>
-                    <a href="#">Other Issues</a>
-                    <a href="#">Property Score</a>
-                    <a href="#">History Score</a>
-                    <a href="#">Compare Proprerties</a>
+                    @Html.ActionLink("Property Reports", "Results", "Properties")
+                    
+                    @Html.ActionLink("Lead Risks", "LeadRisks", "Properties")
+                    
+                    @Html.ActionLink("Other Hazards", "OtherHazards", "Properties")
+                    
+                    @Html.ActionLink("Other Issues", "OtherIssues", "Properties")
+                    
+                    @Html.ActionLink("Property Score", "PropertyScore", "Properties")
+                    
+                    @Html.ActionLink("History Score", "HistoryScore", "Properties")
+                    
+                    @Html.ActionLink("Compare Proprerties", "CompareProprerties", "Properties")
                 </div>
             </div>
-            <a href="#news">News</a>
-            <a href="#contact">Contact</a>
-            <a href="#about">About</a>
+            @Html.ActionLink("News", "News", "Home")
+
+            @Html.ActionLink("Contact", "Contact", "Home")
+
+            @Html.ActionLink("About", "About", "Home")
+
             <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="navigationHH()">&#9776;</a>
             @Html.Partial("_LoginPartial")
         </div>
 
         <div id="logo">
-            <a href="~/Views/Home/Contact.cshtml"><img src="~/images/ClevCodes-logo.png" id="logoimg" /></a>
+            <a href="~/Home/Index"><img src="~/images/ClevCodes-logo.png" id="logoimg" /></a>
         </div>
 
     </div>
