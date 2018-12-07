@@ -1,5 +1,7 @@
 ﻿using HH.DB.Models;
 using HH.ViewModels;
+using HH.DBQueries;
+using HH.DBQueries.DTOs;
 using System;
 using System.Net;
 using System.Web.Mvc;
@@ -23,13 +25,21 @@ namespace HH.Controllers
 
 
         //https://localhost:44366/properties/leadrisk?propertyID=3
-        public ActionResult LeadRisk(int propertyID)
+        public ActionResult LeadRisk(int? propertyID)
         {
             //1. In DBQueries, create a query to retrieve the Observation by propertyID
+            QueryMethods qm = new QueryMethods();
+            
+            ObservationsDTO obsDTO = qm.GetLeadRisk((int)propertyID);
+            
 
-
-            //2. Copy fields from the query in step 1 into LeadRiskVM
-            LeadRiskVM lrVM = new LeadRiskVM();
+             //2. Copy fields from the query in step 1 into LeadRiskVM
+             LeadRiskVM lrVM = new LeadRiskVM();
+            lrVM.yrbuilt = obsDTO.yrbuilt;           
+            lrVM.TimeStamp = obsDTO.TimeStamp;
+            lrVM.name = obsDTO.ObservationTypes;
+        
+               
 
 
             return View(lrVM);

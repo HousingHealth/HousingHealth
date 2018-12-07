@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\ObservationsDTO.cs" />
     <Compile Include="DTOs\PropertyDTO.cs" />
     <Compile Include="QueryMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
