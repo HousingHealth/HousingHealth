@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using HH.ViewModels;
 using HH.DB.Models;
 using HH.DBQueries.DTOs;
 
@@ -50,9 +49,61 @@ namespace HH.DBQueries
                 return propinfo;
         }
 
+        
+        public ObservationDTO GetObservationsByPropertyID(int ID)
+        {
+            var observationsinfo = (from observations in db.Observations
+                            where observations.ID == ID 
+                            orderby observations.ID
+                            select new ObservationDTO
+                            {
+                                Number =observations.Properties.number,
+                                Street = observations.Properties.street,
+                                Observation_Types = observations.Observation_Types,
+                                time_stamp= observations.time_stamp,
+                               
+                            }).First();
+
+            return observationsinfo;
+        }
+
+
+        public List<ObservationDTO> ObservationSearchByParcel(string Parcel)
+        {
+            var observationsinfo = (from observation in db.Observations
+                                    where observation.Properties.parcel == Parcel
+                                    select new ObservationDTO
+                                    {
+                                        Parcel = observation.Properties.parcel,
+                                        Number = observation.Properties.number,
+                                        Street = observation.Properties.street,
+                                        Observation_Types = observation.Observation_Types,
+                                        time_stamp = observation.time_stamp,
+                                    }).ToList();
+
+            return observationsinfo;
+        }
+
+
+        public List<ObservationDTO> ObservationSearchByNumber(string Number/*, string Street*/)
+        {
+            var observationsinfo = (from observation in db.Observations
+                                    where observation.Properties.number == Number /*&& observation.Properties.street == Street*/
+                                    select new ObservationDTO
+                                    {
+                                        Parcel = observation.Properties.parcel,
+                                        Number = observation.Properties.number,
+                                        Street = observation.Properties.street,
+                                        Observation_Types = observation.Observation_Types,
+                                        time_stamp = observation.time_stamp,
+                                    }).ToList();
+
+            return observationsinfo;
+        }
+    }
 
     }
-}
+
 //List<PropertiesViewModels> propertiesVM = propinfo.Select(item => new PropertiesViewModels()
 //{
 //    IsActive = item.IsActive,

@@ -1,0 +1,50 @@
+﻿@model HH.ViewModels.ObservationsViewModel
+
+@{
+    ViewBag.Title = "Search Property Observations";
+}
+
+<h2><b>Search Property for Observations</b></h2>
+
+  <b> Search Property Using Parcel or Number and Street: </b>
+<h2> </h2>
+
+@using (Html.BeginForm("ObservationSearch", "Observations", FormMethod.Post))
+
+
+{
+    @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+ 
+
+      @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+      <div class="form-group">
+          @Html.LabelFor(model => model.Parcel, htmlAttributes: new { @class = "control-label col-md-2" })
+          <div class="col-md-10">
+              @Html.EditorFor(model => model.Parcel, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(model => model.Parcel, "", new { @class = "text-danger" })
+          </div>
+      </div>
+
+      <h5> - Or -</h5>
+
+      <div class="form-group">
+          @Html.LabelFor(model => model.Number, htmlAttributes: new { @class = "control-label col-md-2" })
+          <div class="col-md-10">
+              @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+          </div>
+      </div>
+
+      <div class="form-group">
+          @Html.LabelFor(model => model.Street, htmlAttributes: new { @class = "control-label col-md-2" })
+          <div class="col-md-10">
+              @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(model => model.Street, "", new { @class = "text-danger" })
+          </div>
+      </div>
+      <input type="submit" value="Search" />
+
+  </div>
+        }
