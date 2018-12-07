@@ -11,12 +11,12 @@ namespace HH.ViewModels
         public int ID { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedByDate { get; set; }
-        public int User_ID { get; set; }
+        public Guid User_ID { get; set; }
         public string Parcel { get; set; }
         public DateTime Date { get; set; }
         [Display(Name = "Current Owner")]
         public string Towner { get; set; }
-        [Display(Name = "Last Sale Amount $")]
+        [Display(Name = "Last Sale Amount")]
         public decimal Lsaleamt { get; set; }
         public string Number { get; set; }
         public string Street { get; set; }
@@ -51,7 +51,7 @@ namespace HH.ViewModels
         public string MAIL_STATE { get; set; }
         [Display(Name = "Owner Zip Code")]
         public string MAIL_ZIPCODE { get; set; }
-        [Display(Name = "Total Net Delinquent Balance $")]
+        [Display(Name = "Total Net Delinquent Balance")]
         public decimal TOTAL_NET_DELQ_BALANCE { get; set; }
         
     }

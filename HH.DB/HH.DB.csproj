@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201812041558321_Initial.Designer.cs">
       <DependentUpon>201812041558321_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812051557005_AddSearchHistory.cs" />
+    <Compile Include="Migrations\201812051557005_AddSearchHistory.Designer.cs">
+      <DependentUpon>201812051557005_AddSearchHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseFields.cs" />
@@ -94,6 +98,7 @@
     <Compile Include="Models\OwnershipFreq.cs" />
     <Compile Include="Models\Properties.cs" />
     <Compile Include="Models\RentalRegistrations.cs" />
+    <Compile Include="Models\SearchHistory.cs" />
     <Compile Include="Models\Tax_records.cs" />
     <Compile Include="Models\Transfers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,6 +110,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812041558321_Initial.resx">
       <DependentUpon>201812041558321_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812051557005_AddSearchHistory.resx">
+      <DependentUpon>201812051557005_AddSearchHistory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

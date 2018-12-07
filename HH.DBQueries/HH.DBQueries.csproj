@@ -55,15 +55,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressQuery.cs" />
     <Compile Include="DTOs\PropertyDTO.cs" />
-    <Compile Include="DTOs\SavedPropertyDTO.cs" />
+    <Compile Include="DTOs\SearchHistoryDTO.cs" />
     <Compile Include="QueryMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +70,9 @@
       <Project>{85d6251e-1c68-47b7-bc09-061189a81557}</Project>
       <Name>HH.DB</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

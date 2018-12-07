@@ -97,6 +97,7 @@ hr {
   -webkit-box-sizing: content-box;
      -moz-box-sizing: content-box;
           box-sizing: content-box;
+          clear: both;
 }
 pre {
   overflow: auto;
@@ -1526,6 +1527,7 @@ address {
   margin-bottom: 20px;
   font-style: normal;
   line-height: 1.42857143;
+  display: inline;
 }
 code,
 kbd,

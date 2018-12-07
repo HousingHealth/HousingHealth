@@ -1,16 +1,11 @@
-﻿using System;
+﻿using HH.DB.Models;
+using HH.DBQueries.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-//using HH.ViewModels;
-using HH.DB.Models;
-using HH.DBQueries.DTOs;
-using Microsoft.AspNet.Identity;
-
-
 
 namespace HH.DBQueries
+
 {
     public class QueryMethods
     {
@@ -22,8 +17,7 @@ namespace HH.DBQueries
                             where prop.number == num && prop.street == street
                             orderby prop.street, prop.number
                             select new PropertyDTO
-                            {
-                                ID = prop.ID,
+                            { ID = prop.ID,
                                 IsActive = prop.IsActive,
                                 CreatedByDate = prop.CreatedByDate,
                                 Parcel = prop.parcel,
@@ -62,7 +56,6 @@ namespace HH.DBQueries
                             orderby prop.street, prop.number
                             select new PropertyDTO
                             {
-                                ID = prop.ID,
                                 IsActive = prop.IsActive,
                                 CreatedByDate = prop.CreatedByDate,
                                 Parcel = prop.parcel,
@@ -93,58 +86,41 @@ namespace HH.DBQueries
             return propinfo;
         }
 
-        public string SaveProperty(int PropertyID, string UserID)
+        public IEnumerable<SearchHistoryDTO> GetSearchHistories()
         {
-            string Message = "";
-            ApplicationUser userRec = db.Users.Find(UserID);
+            //ApplicationUser userRec = db.us.Users.Find();
 
-            var rec = db.SavedProperties.Where(p => p.Property.ID == PropertyID  && p.CreatedByUser.Id == userRec.Id).FirstOrDefault();
+            var SearchHistoryresults = (from sh in db.SearchHistory
+                                        select new SearchHistoryDTO
+                                        {
+                                            Number = sh.Properties.number,
+                                            Street = sh.Properties.street,
+                                            CreatedByDate = sh.CreatedByDate
+                                        }).ToList();
+
+            return (SearchHistoryresults);
+        }
+
+        
+        public void SaveSearchHistory(int PropertyID, string UserID)
+        {
+            ApplicationUser userRec = db.Users.Find(UserID);
+            var rec = db.SearchHistory.Where(s => s.ID == PropertyID && s.CreatedByUser.Id == userRec.Id).FirstOrDefault();
             
             if (rec == null)
             {
-                Properties propRec = db.Properties.Find(PropertyID);
+                Properties pr = db.Properties.Find(PropertyID);
+                SearchHistory sh = new SearchHistory();
 
-                SavedProperties spRec = new SavedProperties();
-                spRec.Property = propRec;
-                spRec.CreatedByUser = userRec;
-                spRec.CreatedByDate = DateTime.Now;
-                spRec.IsActive = propRec.IsActive;
-
-                db.SavedProperties.Add(spRec);
-                db.SaveChanges();
-                Message = "Property has been saved";
-                return Message;
-            }
-            else
-            {
-                Message = "Property has already been saved";
-                return Message;
-            }
-
-        }
-        
-
-        public IEnumerable<SavedPropertyDTO> GetSavedProperties(string UserID)
-        {
-            ApplicationUser userRec = db.Users.Find(UserID);
-
-            var results = (from sp in db.SavedProperties
-                           where sp.CreatedByUser.Id == UserID
-                           //orderby 
-                           select new SavedPropertyDTO
-                           {
-                               ID = sp.ID,
-                               IsActive = sp.IsActive,
-                               CreatedByDate = sp.CreatedByDate,
-                               PropertyAddress = sp.Property.number + " " + sp.Property.street,
-                          }
-                          ).ToList();
-
-            return results;
+                sh.Properties = pr;
+                sh.CreatedByUser = userRec;
+                sh.CreatedByDate = DateTime.Now;
+                sh.IsActive = true;
+                db.SearchHistory.Add(sh);
+                db.SaveChanges();     
+            }           
         }
 
-
+      
     }
 }
-
-
