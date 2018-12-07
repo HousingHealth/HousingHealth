@@ -1,9 +1,11 @@
 ﻿using HH.DB.Models;
 using HH.DBQueries.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace HH.DBQueries
+
 {
     public class QueryMethods
     {
@@ -12,37 +14,38 @@ namespace HH.DBQueries
         public PropertyDTO GetPropertyInfo(string num, string street)
         {
             var propinfo = (from prop in db.Properties
-                        where prop.number == num && prop.street == street
-                        orderby prop.street, prop.number
-                        select new PropertyDTO
-                        {
-                            IsActive = prop.IsActive,
-                            CreatedByDate = prop.CreatedByDate,
-                            Parcel = prop.parcel,
-                            Date = prop.date,
-                            Towner = prop.towner,
-                            Lsaleamt = prop.lsaleamt,
-                            Number = prop.number,
-                            Street = prop.street,
-                            Tract10 = prop.tract10,
-                            BLOCK10 = prop.BLOCK10,
-                            BLOCKGR10 = prop.BLOCKGR10,
-                            Pclass = prop.pclass,
-                            Luc = prop.luc,
-                            Luc_descr = prop.luc_descr,
-                            Yrbuilt = prop.yrbuilt,
-                            MAILNAME = prop.MAILNAME,
-                            Mailname1 = prop.mailname1,
-                            MAIL_STREET_NUMBER = prop.MAIL_STREET_NUMBER,
-                            MAIL_STREET_DIRECTION = prop.MAIL_STREET_DIRECTION,
-                            MAIL_STREET_NAME = prop.MAIL_STREET_NAME,
-                            MAIL_STREET_SUFFIX = prop.MAIL_STREET_SUFFIX,
-                            MAIL_CITY = prop.MAIL_CITY,
-                            MAIL_STATE = prop.MAIL_STATE,
-                            MAIL_ZIPCODE = prop.MAIL_ZIPCODE,
-                            TOTAL_NET_DELQ_BALANCE = prop.TOTAL_NET_DELQ_BALANCE
-                        }).First();
-                return propinfo;
+                            where prop.number == num && prop.street == street
+                            orderby prop.street, prop.number
+                            select new PropertyDTO
+                            { ID = prop.ID,
+                                IsActive = prop.IsActive,
+                                CreatedByDate = prop.CreatedByDate,
+                                Parcel = prop.parcel,
+                                Date = prop.date,
+                                Towner = prop.towner,
+                                Lsaleamt = prop.lsaleamt,
+                                Number = prop.number,
+                                Street = prop.street,
+                                Tract10 = prop.tract10,
+                                BLOCK10 = prop.BLOCK10,
+                                BLOCKGR10 = prop.BLOCKGR10,
+                                Pclass = prop.pclass,
+                                Luc = prop.luc,
+                                Luc_descr = prop.luc_descr,
+                                Yrbuilt = prop.yrbuilt,
+                                MAILNAME = prop.MAILNAME,
+                                Mailname1 = prop.mailname1,
+                                MAIL_STREET_NUMBER = prop.MAIL_STREET_NUMBER,
+                                MAIL_STREET_DIRECTION = prop.MAIL_STREET_DIRECTION,
+                                MAIL_STREET_NAME = prop.MAIL_STREET_NAME,
+                                MAIL_STREET_SUFFIX = prop.MAIL_STREET_SUFFIX,
+                                MAIL_CITY = prop.MAIL_CITY,
+                                MAIL_STATE = prop.MAIL_STATE,
+                                MAIL_ZIPCODE = prop.MAIL_ZIPCODE,
+                                TOTAL_NET_DELQ_BALANCE = prop.TOTAL_NET_DELQ_BALANCE
+                            }).First();
+
+            return propinfo;
         }
 
 
@@ -83,38 +86,41 @@ namespace HH.DBQueries
             return propinfo;
         }
 
-
-
-        //public PropertyDTO GetSavedProperties(int ID)
-        //{
-        //    var propinfo = (from prop in db.SavedProperties
-        //                    where prop.ID == ID
-        //                    orderby prop.street, prop.number
-        //                    select new PropertyDTO
-        //                    {
-        //                        IsActive = prop.IsActive,
-        //                        CreatedByDate = prop.CreatedByDate,
-        //                        Date = prop.date,
-        //                        Number = prop.number,
-        //                        Street = prop.street,
-        //                    }).First();
-
         public IEnumerable<SearchHistoryDTO> GetSearchHistories()
         {
-                HousingHealthDB db = new HousingHealthDB();
+            //ApplicationUser userRec = db.us.Users.Find();
 
-                var SearchHistoryresults = (from sh in db.SearchHistory
-                                            select new SearchHistoryDTO
-                                             {
-                                                 Number = sh.Properties.number,
-                                                 Street = sh.Properties.street,
-                                                 CreatedByDate = sh.CreatedByDate
-                                             }).ToList();
+            var SearchHistoryresults = (from sh in db.SearchHistory
+                                        select new SearchHistoryDTO
+                                        {
+                                            Number = sh.Properties.number,
+                                            Street = sh.Properties.street,
+                                            CreatedByDate = sh.CreatedByDate
+                                        }).ToList();
 
-                return (SearchHistoryresults);  
+            return (SearchHistoryresults);
         }
 
+        
+        public void SaveSearchHistory(int PropertyID, string UserID)
+        {
+            ApplicationUser userRec = db.Users.Find(UserID);
+            var rec = db.SearchHistory.Where(s => s.ID == PropertyID && s.CreatedByUser.Id == userRec.Id).FirstOrDefault();
+            
+            if (rec == null)
+            {
+                Properties pr = db.Properties.Find(PropertyID);
+                SearchHistory sh = new SearchHistory();
 
+                sh.Properties = pr;
+                sh.CreatedByUser = userRec;
+                sh.CreatedByDate = DateTime.Now;
+                sh.IsActive = true;
+                db.SearchHistory.Add(sh);
+                db.SaveChanges();     
+            }           
+        }
+
+      
     }
 }
-        

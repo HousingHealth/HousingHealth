@@ -34,48 +34,38 @@ namespace HH.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
             }
+           
 
             QueryMethods qm = new QueryMethods();
-
             PropertyDTO res = qm.GetPropertyInfo(pr.Number, pr.Street);
-            {
-                pr.Parcel = res.Parcel;
-                pr.Date = res.Date;
-                pr.Towner = res.Towner;
-                pr.Lsaleamt = res.Lsaleamt;
-                pr.Number = res.Number;
-                pr.Street = res.Street;
-                pr.BLOCK10 = res.BLOCK10;
-                pr.BLOCKGR10 = res.BLOCKGR10;
-                pr.Tract10 = res.Tract10;
-                pr.Pclass = res.Pclass;
-                pr.Luc = res.Luc;
-                pr.Luc_descr = res.Luc_descr;
-                pr.Yrbuilt = res.Yrbuilt;
-                pr.MAILNAME = res.MAILNAME;
-                pr.Mailname1 = res.Mailname1;
-                pr.MAIL_STREET_NUMBER = res.MAIL_STREET_NUMBER;
-                pr.MAIL_STREET_DIRECTION = res.MAIL_STREET_DIRECTION;
-                pr.MAIL_STREET_NAME = res.MAIL_STREET_NAME;
-                pr.MAIL_STREET_SUFFIX = res.MAIL_STREET_SUFFIX;
-                pr.MAIL_CITY = res.MAIL_CITY;
-                pr.MAIL_STATE = res.MAIL_STATE;
-                pr.MAIL_ZIPCODE = res.MAIL_ZIPCODE;
-                pr.TOTAL_NET_DELQ_BALANCE = Convert.ToDecimal(res.TOTAL_NET_DELQ_BALANCE);
-                
-                return View("Results", pr);
-            }
-           var searhHistoryRec = new SearchHistory
-            {
-               //Properties = pr,  //Get this from Jack when he's done
-               CreatedByDate = DateTime.Now,
-               CreatedByUser = hhdb.Users.Find(User.Identity.GetUserId()),
-               IsActive = true
-           };
+            qm.SaveSearchHistory(res.ID, User.Identity.GetUserId());
 
-            hhdb.SearchHistory.Add(searhHistoryRec);
-            hhdb.SaveChanges();
+            pr.Parcel = res.Parcel;
+            pr.Date = res.Date;
+            pr.Towner = res.Towner;
+            pr.Lsaleamt = res.Lsaleamt;
+            pr.Number = res.Number;
+            pr.Street = res.Street;
+            pr.BLOCK10 = res.BLOCK10;
+            pr.BLOCKGR10 = res.BLOCKGR10;
+            pr.Tract10 = res.Tract10;
+            pr.Pclass = res.Pclass;
+            pr.Luc = res.Luc;
+            pr.Luc_descr = res.Luc_descr;
+            pr.Yrbuilt = res.Yrbuilt;
+            pr.MAILNAME = res.MAILNAME;
+            pr.Mailname1 = res.Mailname1;
+            pr.MAIL_STREET_NUMBER = res.MAIL_STREET_NUMBER;
+            pr.MAIL_STREET_DIRECTION = res.MAIL_STREET_DIRECTION;
+            pr.MAIL_STREET_NAME = res.MAIL_STREET_NAME;
+            pr.MAIL_STREET_SUFFIX = res.MAIL_STREET_SUFFIX;
+            pr.MAIL_CITY = res.MAIL_CITY;
+            pr.MAIL_STATE = res.MAIL_STATE;
+            pr.MAIL_ZIPCODE = res.MAIL_ZIPCODE;
+            pr.TOTAL_NET_DELQ_BALANCE = Convert.ToDecimal(res.TOTAL_NET_DELQ_BALANCE);
+            
 
+            
             return View("Results", pr);
         }
 
@@ -129,7 +119,8 @@ namespace HH.Controllers
 
         [HttpGet]
         public ActionResult SearchHistory()
-        {            
+        {
+            string UserID = User.Identity.GetUserId();
             QueryMethods qm = new QueryMethods();
             var results = qm.GetSearchHistories();
 

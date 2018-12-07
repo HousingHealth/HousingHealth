@@ -5,7 +5,6 @@
 <h2>@ViewBag.Title</h2>
 
 
-
 @using (Html.BeginForm("Search", "Properties", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -23,17 +22,5 @@
                 @{ Html.RenderPartial("~/Views/Properties/Map.cshtml"); }
             </div>
         </div>
-
     </div>
-
-
-
-
-
-
 }
-
-
-
-
-
