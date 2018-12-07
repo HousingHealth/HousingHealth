@@ -3,10 +3,6 @@ using HH.DBQueries.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HH.DB.Models;
-using HH.DBQueries.DTOs;
 
 namespace HH.DBQueries
 
@@ -21,7 +17,8 @@ namespace HH.DBQueries
                             where prop.number == num && prop.street == street
                             orderby prop.street, prop.number
                             select new PropertyDTO
-                            { ID = prop.ID,
+                            {
+                                ID = prop.ID,
                                 IsActive = prop.IsActive,
                                 CreatedByDate = prop.CreatedByDate,
                                 Parcel = prop.parcel,
@@ -90,20 +87,20 @@ namespace HH.DBQueries
             return propinfo;
         }
 
-        
+
         public ObservationDTO GetObservationsByPropertyID(int ID)
         {
             var observationsinfo = (from observations in db.Observations
-                            where observations.ID == ID 
-                            orderby observations.ID
-                            select new ObservationDTO
-                            {
-                                Number =observations.Properties.number,
-                                Street = observations.Properties.street,
-                                Observation_Types = observations.Observation_Types,
-                                time_stamp= observations.time_stamp,
-                               
-                            }).First();
+                                    where observations.ID == ID
+                                    orderby observations.ID
+                                    select new ObservationDTO
+                                    {
+                                        Number = observations.Properties.number,
+                                        Street = observations.Properties.street,
+                                        Observation_Types = observations.Observation_Types,
+                                        time_stamp = observations.time_stamp,
+
+                                    }).First();
 
             return observationsinfo;
         }
@@ -141,35 +138,45 @@ namespace HH.DBQueries
 
             return observationsinfo;
         }
-    }
+
+
+
+
+        public IEnumerable<SearchHistoryDTO> GetSearchHistories()
+        {
+            //ApplicationUser userRec = db.us.Users.Find();
+
+            var SearchHistoryresults = (from sh in db.SearchHistory
+                                        select new SearchHistoryDTO
+                                        {
+                                            Number = sh.Properties.number,
+                                            Street = sh.Properties.street,
+                                            CreatedByDate = sh.CreatedByDate
+                                        }).ToList();
+
+            return (SearchHistoryresults);
+        }
+
+
+        public void SaveSearchHistory(int PropertyID, string UserID)
+        {
+            ApplicationUser userRec = db.Users.Find(UserID);
+            var rec = db.SearchHistory.Where(s => s.ID == PropertyID && s.CreatedByUser.Id == userRec.Id).FirstOrDefault();
+
+            if (rec == null)
+            {
+                Properties pr = db.Properties.Find(PropertyID);
+                SearchHistory sh = new SearchHistory();
+
+                sh.Properties = pr;
+                sh.CreatedByUser = userRec;
+                sh.CreatedByDate = DateTime.Now;
+                sh.IsActive = true;
+                db.SearchHistory.Add(sh);
+                db.SaveChanges();
+            }
+        }
+
 
     }
-
-//List<PropertiesViewModels> propertiesVM = propinfo.Select(item => new PropertiesViewModels()
-//{
-//    IsActive = item.IsActive,
-//    CreatedByDate = item.CreatedByDate,
-//    Parcel = item.Parcel,
-//    Date = item.Date,
-//    Towner = item.Towner,
-//    Lsaleamt = item.Lsaleamt,
-//    Number = item.Number,
-//    Street = item.Street,
-//    Tract10 = item.Tract10,
-//    BLOCK10 = item.BLOCK10,
-//    BLOCKGR10 = item.BLOCKGR10,
-//    Pclass = item.Pclass,
-//    Luc = item.Luc,
-//    Luc_descr = item.Luc_descr,
-//    Yrbuilt = item.Yrbuilt,
-//    MAILNAME = item.MAILNAME,
-//    Mailname1 = item.Mailname1,
-//    MAIL_STREET_NUMBER = item.MAIL_STREET_NUMBER,
-//    MAIL_STREET_DIRECTION = item.MAIL_STREET_DIRECTION,
-//    MAIL_STREET_NAME = item.MAIL_STREET_NAME,
-//    MAIL_STREET_SUFFIX = item.MAIL_STREET_SUFFIX,
-//    MAIL_CITY = item.MAIL_CITY,
-//    MAIL_STATE = item.MAIL_STATE,
-//    MAIL_ZIPCODE = item.MAIL_ZIPCODE,
-//    TOTAL_NET_DELQ_BALANCE = item.TOTAL_NET_DELQ_BALANCE
-//}).ToList();
+}
