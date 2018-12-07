@@ -1,6 +1,5 @@
 ﻿using HH.DB.Models;
 using HH.DBQueries;
-using HH.DBQueries;
 using HH.DBQueries.DTOs;
 using HH.ViewModels;
 using System;
@@ -112,7 +111,6 @@ namespace HH.Controllers
             return View();
         }
 
-        }
 
         public ActionResult DisplayMarkers()
         {
