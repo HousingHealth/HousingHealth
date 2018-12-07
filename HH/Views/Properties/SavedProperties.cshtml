@@ -1,0 +1,150 @@
+﻿@*@model IEnumerable<HH.ViewModels.SavedPropertiesVM>*@
+@model IEnumerable<HH.DBQueries.DTOs.SavedPropertyDTO>
+
+@{
+    var grid = new WebGrid();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .webgrid-table {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 14px;
+        font-weight: normal;
+        display: table;
+        border-collapse: collapse;
+        border: solid 2px #C5C5C5;
+        background-color: white;
+        align-self: center;
+        float: left;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        background-color: #2196F3;
+        padding: 10px;
+    }
+
+    td, th {
+        border: 1px solid #C5C5C5;
+        padding: 3px 5px 5px;
+        text-align: center;
+        width: auto auto 200px;
+    }
+
+    .webgrid-header a {
+        background-color: lavender;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        width: 33.33% 33.33% 33.33%;
+    }
+
+    .webgrid-header {
+        background-color: lavender;
+        padding: 18px 18px 18px;
+        text-align: center;
+        font-family: 'Agency FB';
+        /*color: black;
+       text-decoration: none;
+       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+       width: 33.33% 33.33% 33.33%;*/
+    }
+
+    .webgrid-row-style {
+        padding: 7px 7px 7px;
+    }
+
+    .webgrid-alternating-row {
+        background-color: #F5F5F5;
+        padding: 7px 7px 7px;
+    }
+
+    .col1Width {
+        width: 400px;
+    }
+
+    .col2Width {
+        width: 400px;
+    }
+
+    .col3Width {
+        width: 400px;
+    }
+
+    .hiddenCol {
+        display: none;
+    }
+
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        $('.delete-item').on('click', function () {
+
+            var tr = $(this).parents('tr');
+            var ID = tr.find("#lblID").text; //.val();
+            alert(ID);
+
+            var PropertyAddress = tr.find("#lblpropAddress").val();
+            var DateSaved = tr.find("#lblDate").val();
+            alert(DateSaved);
+
+            tr.find('#lblID').text(ID)
+            tr.find("#lblpropAddress").text(PropertyAddress);
+            tr.find("#lblDate").text(DateSaved);
+
+            tr.find('.delete-mode, .display-mode').toggle();
+
+            var DeleteSavedProperty =
+            {
+                "ID": ID
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/Properties/JsonDelete',
+                data: JSON.stringify(DeleteSavedProperty),
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if (data.toUpperCase().includes('THRESHOLD'))
+                        alert(data);
+                    else
+                        alert(data);
+                    //assume successful save above threshold limit
+                }
+            });
+        });
+    });
+</script>
+
+
+@{
+    var webGrid = new WebGrid(Model, canPage: false);
+}
+
+<div id="gridContent" style="align-content:center; padding:20px; ">
+    @webGrid.GetHtml(           tableStyle: "webgrid-table",
+                                headerStyle: "webgrid-header",
+                                footerStyle: "webgrid-footer",
+                                alternatingRowStyle: "webgrid-alternating-row",
+                                selectedRowStyle: "webgrid-selected-row",
+                                rowStyle: "webgrid-row-style",
+                                mode: WebGridPagerModes.All,
+                                columns:
+                                grid.Columns(
+                                    grid.Column("ID", "Id", format: @<text> <span class="display-mode"><label id="lblID">@item.ID</label></span> </text>, style: "col1Width"),
+                                    grid.Column("PropertyAddress", "Property Address", format: @<text>  <span class="display-mode"><label id="lblpropAddress">@item.PropertyAddress</label></span> </text>, style: "col1Width"),
+                                    grid.Column("CreatedByDate", "Date Saved", format: @<text> <span class="display -mode"><label id="lblDate">@item.CreatedByDate</label></span> </text>, style: "col3Width"),
+                                                            grid.Column("Action", format: @<text>
+                                                                <button class="delete-item">Delete</button>
+                                                            </text>, style: "col3Width", canSort: false)
+
+
+                                                                        )
+
+                                                            )
+</div>

@@ -17,5 +17,7 @@ namespace HH.DB.Models
         public DbSet<Observation_types> Observation_types { get; set; }
         public DbSet<Transfers> Transfers { get; set; }
         public DbSet<Observations> Observations { get; set; }
+        public DbSet<SavedProperties> SavedProperties { get; set; }
+        public DbSet<SearchHistory> SearchHistory { get; set; }        
     }
 }
