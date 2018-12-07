@@ -1,4 +1,5 @@
-﻿using HH.DBQueries;
+﻿using HH.DB.Models;
+using HH.DBQueries;
 using HH.DBQueries.DTOs;
 using HH.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -103,10 +104,9 @@ namespace HH.Controllers
      
         public ActionResult SearchAddr()
         {
-            string addr = "2418 Woodland Ave, Cleveland, OH";
-            ViewBag.Address = addr;
             return View();
         }
+
 
         [HttpPost]
         public ActionResult SearchAddr(string address)

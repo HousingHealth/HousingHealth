@@ -10,14 +10,16 @@
     @Html.AntiForgeryToken()
     <div id="mapBox">
         <div class="form-horizontal">
+            @Html.LabelFor(m => m.Number)
+            @Html.TextBoxFor(m => m.Number)
+
+            @Html.LabelFor(m => m.Street)
+            @Html.TextBoxFor(m => m.Street)
+
+            <input type="submit" value="Search" id="submitBtn" /> <br />
+
             @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-            <h5>Number</h5>
-            @Html.TextBox("Number", null, new { @class = "form-control", id = "Number", autofocus = "autofocus", onFocus = "this.select()" })
-            <h5>Street Name</h5>
-            @Html.TextBox("Street", null, new { @class = "form-control", id = "Street" })
-            <br />
-            <input type="submit" value="Search" id="submitBtn" />
-            <br />
+
             <div class="map">
                 @{ Html.RenderPartial("~/Views/Properties/Map.cshtml"); }
             </div>

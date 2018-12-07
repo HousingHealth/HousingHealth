@@ -47,8 +47,16 @@ textarea {
     height: auto;
     padding-bottom:3px;
     padding-left:3px;
+    position: absolute;
 }
-
+#form-fields {
+    width: 50%;
+    height: auto;
+    padding: 0%;
+    margin: 0%;
+    display: inline-block;
+    float: left;
+}
 
 form-horizontal {
     float: none;
@@ -56,21 +64,13 @@ form-horizontal {
     height: auto;
 }
 
-
-.map {
-    float: left;
-    padding: 10px;
-    width: 20%;
-    height: auto;
-  
-}
-
 /* Add a black background color to the top navigation */
 .hh_topnav {
-    width: 80%;
-    background-color:darkblue;
+    width: 93%;
+    background-color: darkblue;
     overflow: hidden;
     float: right;
+    
 }
 
     /* Style the links inside the navigation bar */
@@ -82,6 +82,7 @@ form-horizontal {
         padding: 14px 16px;
         text-decoration: none;
         font-size: 17px;
+        
     }
 
 /* Add an active class to highlight the current page */
