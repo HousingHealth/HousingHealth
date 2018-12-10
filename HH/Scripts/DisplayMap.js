@@ -1,6 +1,8 @@
 ﻿
 function init_map() {
-    var address = $("#address").val();
+    //var address = $("#address").val();
+    var address = $("#number").text() + $("#street").text();
+
     //var address = "3900 Wildlife Way, Cleveland, OH";
     var geocoder = new google.maps.Geocoder();
     var latitude = 52.3800447;          //Set default value in case address is null.

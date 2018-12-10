@@ -104,6 +104,8 @@ namespace HH.Controllers
      
         public ActionResult SearchAddr()
         {
+            //string addr = "2418 woodland Ave,Cleveland, Oh";
+            //ViewBag.Address = addr;
             return View();
         }
 
@@ -112,6 +114,13 @@ namespace HH.Controllers
         public ActionResult SearchAddr(string address)
         {
             ViewBag.Address = address;
+            return View();
+        }
+
+        public ActionResult DisplayMarkers()
+        {
+            //AddressQuery addr = new AddressQuery();
+            //ViewBag.FullAddressList = addr.GetAddressInfo();
             return View();
         }
 

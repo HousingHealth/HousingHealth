@@ -12,7 +12,8 @@ var map = new google.maps.Map(document.getElementById('gmap_canvas'), mapOptions
 var bounds = new google.maps.LatLngBounds();
 var locations = [
     '601 Lakeside Ave, Cleveland, OH',
-    '3409 Woodland Ave., Cleveland, OH',
+    '1 St. Clair Ave NE Cleveland, OH',
+    '3409 Woodland Ave, Cleveland, OH',
     '1300 Crestline Ave, Cleveland, OH ',
     '10900 Euclid Ave, Cleveland, OH',
     '5300 Riverside Dr, Cleveland, OH',
