@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<HH.ViewModels.SavedPropertiesVM>*@
-@model IEnumerable<HH.DBQueries.DTOs.SavedPropertyDTO>
+﻿@model IEnumerable<HH.ViewModels.SavedPropertiesVM>
 
 @{
     var grid = new WebGrid();
@@ -9,7 +8,7 @@
 <style type="text/css">
     .webgrid-table {
         font-family: "Courier New", Courier, monospace;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: normal;
         display: table;
         border-collapse: collapse;
@@ -46,7 +45,7 @@
         background-color: lavender;
         padding: 18px 18px 18px;
         text-align: center;
-        font-family: 'Agency FB';
+        font-family: 'Trebuchet MS';
         /*color: black;
        text-decoration: none;
        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -62,8 +61,12 @@
         padding: 7px 7px 7px;
     }
 
+    .col0Width{
+        width: 50px;
+    }
+
     .col1Width {
-        width: 400px;
+        width: 600px;
     }
 
     .col2Width {
@@ -71,13 +74,13 @@
     }
 
     .col3Width {
-        width: 400px;
+        width: 200px;
     }
 
     .hiddenCol {
         display: none;
+        visibility: hidden
     }
-
 </style>
 
 <script type="text/javascript">
@@ -85,24 +88,23 @@
         $('.delete-item').on('click', function () {
 
             var tr = $(this).parents('tr');
-            var ID = tr.find("#lblID").text; //.val();
-            alert(ID);
-
-            var PropertyAddress = tr.find("#lblpropAddress").val();
-            var DateSaved = tr.find("#lblDate").val();
-            alert(DateSaved);
+            var ID = tr.find("#lblID").text();
+            var PropertyAddress = tr.find("#lblpropAddress").text();
+            var DateSaved = tr.find("#lblDate").text();
 
             tr.find('#lblID').text(ID)
             tr.find("#lblpropAddress").text(PropertyAddress);
             tr.find("#lblDate").text(DateSaved);
-
             tr.find('.delete-mode, .display-mode').toggle();
 
             var DeleteSavedProperty =
             {
-                "ID": ID
+                "ID": ID,
+                "IsActive": this.IsActive,
+                "CreatedByDate": this.CreatedByDate,
+                "UserID": this.UserID
             };
-
+            
             $.ajax({
                 type: 'POST',
                 url: '/Properties/JsonDelete',
@@ -114,7 +116,6 @@
                         alert(data);
                     else
                         alert(data);
-                    //assume successful save above threshold limit
                 }
             });
         });
@@ -136,15 +137,16 @@
                                 mode: WebGridPagerModes.All,
                                 columns:
                                 grid.Columns(
-                                    grid.Column("ID", "Id", format: @<text> <span class="display-mode"><label id="lblID">@item.ID</label></span> </text>, style: "col1Width"),
-                                    grid.Column("PropertyAddress", "Property Address", format: @<text>  <span class="display-mode"><label id="lblpropAddress">@item.PropertyAddress</label></span> </text>, style: "col1Width"),
-                                    grid.Column("CreatedByDate", "Date Saved", format: @<text> <span class="display -mode"><label id="lblDate">@item.CreatedByDate</label></span> </text>, style: "col3Width"),
-                                                            grid.Column("Action", format: @<text>
-                                                                <button class="delete-item">Delete</button>
-                                                            </text>, style: "col3Width", canSort: false)
+
+                                            grid.Column("PropertyAddress", "Property Address", format: @<text>  <span class="display-mode"><label id="lblpropAddress"> <a href="~/Properties/SearchByPropertyID?PropID=@item.PropID">@item.PropertyAddress</a></label></span> </text>, style: "col1Width"),
+                                                            grid.Column("CreatedByDate", "Date Saved", format: @<text> <span class="display-mode"><label id="lblDate">@item.CreatedByDate</label></span> </text>, style: "col2Width"),
+                                                                            grid.Column("ID", format: @<text> <span class="display-mode"><label id="lblID">@item.ID</label></span> </text>),
+                                                                                    grid.Column("Action", format: @<text>
+                                                                                        <button class="delete-item display-mode">Delete</button>
+                                                                                    </text>, style: "col3Width", canSort: false)
 
 
-                                                                        )
 
-                                                            )
+                                                                                                                       )
+                                                                                                            )
 </div>

@@ -2,8 +2,13 @@
 
 <div id="form-fields">
 
-     <br/>
-    
+    <br />
+
+    <div id="ID" class="form-group">
+        @Html.HiddenFor(m => m.ID)
+         @Html.HiddenFor(m => m.ID)
+    </div>
+
     <div id="number" class="form-group">
         @Html.DisplayNameFor(m => m.Number)
         : @Html.DisplayFor(m => m.Number)
@@ -128,7 +133,18 @@
     </div>
     <br />
     <div class="button">
-        <input type="submit" value="Save This Property" onclick="location.href='@Url.Action("SavedProperties", "Properties", new { id = Model.ID })'">
+        <input type="submit" value="Save This Property" onclick="location.href='@Url.Action("SavedProperties", "Properties")'" class="btn btn-default" />
+    </div>
+    <br />
+
+    <br />
+    <div class="button">
+        <input type="submit" value="Save This Property" onclick="location.href='@Url.Action("SaveProperty", "Properties", new { id = Model.ID })'" class="btn btn-default">
+        <input type="button" value="Save Property to Compare" onclick="location.href='@Url.Action("SavePropToCompare", "Properties", new { ID = Model.ID })'" onclick="location.href='@Url.Action("CompareProp", "Properties")'" class="btn btn-default" />
+    </div>
+    <br />
+    <div class="button">
+        <input type="button" value="Compare Properties" onclick="location.href='@Url.Action("CompareProp", "Properties", new { ID = Model.ID })'" class="btn btn-default" />
     </div>
  </div>
 <div class="map">
