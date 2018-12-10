@@ -126,11 +126,11 @@
     <div class="button">
         <input type="button" value="Search For Another Property" onclick="location.href='@Url.Action("Search", "Properties")'" class="btn btn-default" />
     </div>
-
+    <br />
     <div class="button">
         <input type="submit" value="Save This Property" onclick="location.href='@Url.Action("SavedProperties", "Properties", new { id = Model.ID })'">
     </div>
-    </div>
+ </div>
 <div class="map">
     @{ Html.RenderPartial("~/Views/Properties/SearchAddr.cshtml"); }
 </div>
