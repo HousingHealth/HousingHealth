@@ -5,7 +5,6 @@
 <h2>@ViewBag.Title</h2>
 
 
-
 @using (Html.BeginForm("Search", "Properties", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -17,25 +16,15 @@
             @Html.LabelFor(m => m.Street)
             @Html.TextBoxFor(m => m.Street)
 
+            
+
             <input type="submit" value="Search" id="submitBtn" /> <br />
 
             @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
             <div class="map">
-                @{ Html.RenderPartial("~/Views/Properties/Map.cshtml"); }
+                @{ Html.RenderPartial("~/Views/Properties/DisplayMarkers.cshtml"); }
             </div>
         </div>
-
     </div>
-
-
-
-
-
-
 }
-
-
-
-
-

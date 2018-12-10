@@ -1,0 +1,73 @@
+﻿@model IEnumerable<HH.ViewModels.ObservationsViewModel>
+
+
+@{
+    ViewBag.Title = "Observation Results";
+}
+
+<h2>Observation Results For:</h2>
+
+
+<table class="table" style="width: 1200px;">
+
+    @{
+        int count = 0;
+        foreach (var item in Model)
+        {
+            if (count < 1)
+            {
+                <tr>
+
+                 <td>
+                     @Html.DisplayFor(modelItem => item.Number)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.Street)
+                 </td>
+
+
+                </tr>
+                count = count + 1;
+            }
+
+        }
+     }
+</table>
+
+
+<br />
+<table class="table" style="width: 1200px;">
+    <tr>
+
+        <th>
+            <b>Observation Types</b>
+        </th>
+        <th>
+            <b>Observation Date</b>
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Observation_Types.name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.time_stamp)
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+<p>
+    @Html.ActionLink("Obtain Observation Results for Another Property", "ObservationSearch", null, new { @class = "btn btn-primary" })
+</p>
+
+<br />
+
