@@ -17,7 +17,8 @@ namespace HH.DBQueries
                             where prop.number == num && prop.street == street
                             orderby prop.street, prop.number
                             select new PropertyDTO
-                            { ID = prop.ID,
+                            {
+                                ID = prop.ID,
                                 IsActive = prop.IsActive,
                                 CreatedByDate = prop.CreatedByDate,
                                 Parcel = prop.parcel,
@@ -86,6 +87,61 @@ namespace HH.DBQueries
             return propinfo;
         }
 
+
+        public ObservationDTO GetObservationsByPropertyID(int ID)
+        {
+            var observationsinfo = (from observations in db.Observations
+                                    where observations.ID == ID
+                                    orderby observations.ID
+                                    select new ObservationDTO
+                                    {
+                                        Number = observations.Properties.number,
+                                        Street = observations.Properties.street,
+                                        Observation_Types = observations.Observation_Types,
+                                        time_stamp = observations.time_stamp,
+
+                                    }).First();
+
+            return observationsinfo;
+        }
+
+
+        public List<ObservationDTO> ObservationSearchByParcel(string Parcel)
+        {
+            var observationsinfo = (from observation in db.Observations
+                                    where observation.Properties.parcel == Parcel
+                                    select new ObservationDTO
+                                    {
+                                        Parcel = observation.Properties.parcel,
+                                        Number = observation.Properties.number,
+                                        Street = observation.Properties.street,
+                                        Observation_Types = observation.Observation_Types,
+                                        time_stamp = observation.time_stamp,
+                                    }).ToList();
+
+            return observationsinfo;
+        }
+
+
+        public List<ObservationDTO> ObservationSearchByNumber(string Number/*, string Street*/)
+        {
+            var observationsinfo = (from observation in db.Observations
+                                    where observation.Properties.number == Number /*&& observation.Properties.street == Street*/
+                                    select new ObservationDTO
+                                    {
+                                        Parcel = observation.Properties.parcel,
+                                        Number = observation.Properties.number,
+                                        Street = observation.Properties.street,
+                                        Observation_Types = observation.Observation_Types,
+                                        time_stamp = observation.time_stamp,
+                                    }).ToList();
+
+            return observationsinfo;
+        }
+
+
+
+
         public IEnumerable<SearchHistoryDTO> GetSearchHistories()
         {
             //ApplicationUser userRec = db.us.Users.Find();
@@ -101,12 +157,12 @@ namespace HH.DBQueries
             return (SearchHistoryresults);
         }
 
-        
+
         public void SaveSearchHistory(int PropertyID, string UserID)
         {
             ApplicationUser userRec = db.Users.Find(UserID);
             var rec = db.SearchHistory.Where(s => s.ID == PropertyID && s.CreatedByUser.Id == userRec.Id).FirstOrDefault();
-            
+
             if (rec == null)
             {
                 Properties pr = db.Properties.Find(PropertyID);
@@ -117,10 +173,10 @@ namespace HH.DBQueries
                 sh.CreatedByDate = DateTime.Now;
                 sh.IsActive = true;
                 db.SearchHistory.Add(sh);
-                db.SaveChanges();     
-            }           
+                db.SaveChanges();
+            }
         }
 
-      
+
     }
 }

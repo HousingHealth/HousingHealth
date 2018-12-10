@@ -1,183 +1,150 @@
-﻿@model IEnumerable<HH.ViewModels.PropertiesViewModels>
+﻿@*@model IEnumerable<HH.ViewModels.SavedPropertiesVM>*@
+@model IEnumerable<HH.DBQueries.DTOs.SavedPropertyDTO>
 
 @{
-    ViewBag.Title = "SavedProperties";
+    var grid = new WebGrid();
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SavedProperties</h2>
+<style type="text/css">
+    .webgrid-table {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 14px;
+        font-weight: normal;
+        display: table;
+        border-collapse: collapse;
+        border: solid 2px #C5C5C5;
+        background-color: white;
+        align-self: center;
+        float: left;
+    }
 
-<p>
-    @Html.ActionLink("Delete", "Delete")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedByDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Parcel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Towner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lsaleamt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Street)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tract10)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BLOCK10)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BLOCKGR10)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pclass)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Luc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Luc_descr)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Yrbuilt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MAILNAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mailname1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MAIL_STREET_NUMBER)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MAIL_STREET_DIRECTION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MAIL_STREET_NAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MAIL_STREET_SUFFIX)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MAIL_CITY)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MAIL_STATE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MAIL_ZIPCODE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TOTAL_NET_DELQ_BALANCE)
-        </th>
-        <th></th>
-    </tr>
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        background-color: #2196F3;
+        padding: 10px;
+    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedByDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Parcel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Towner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lsaleamt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Street)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tract10)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BLOCK10)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BLOCKGR10)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pclass)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Luc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Luc_descr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Yrbuilt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MAILNAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mailname1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MAIL_STREET_NUMBER)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MAIL_STREET_DIRECTION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MAIL_STREET_NAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MAIL_STREET_SUFFIX)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MAIL_CITY)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MAIL_STATE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MAIL_ZIPCODE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TOTAL_NET_DELQ_BALANCE)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+    td, th {
+        border: 1px solid #C5C5C5;
+        padding: 3px 5px 5px;
+        text-align: center;
+        width: auto auto 200px;
+    }
+
+    .webgrid-header a {
+        background-color: lavender;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        width: 33.33% 33.33% 33.33%;
+    }
+
+    .webgrid-header {
+        background-color: lavender;
+        padding: 18px 18px 18px;
+        text-align: center;
+        font-family: 'Agency FB';
+        /*color: black;
+       text-decoration: none;
+       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+       width: 33.33% 33.33% 33.33%;*/
+    }
+
+    .webgrid-row-style {
+        padding: 7px 7px 7px;
+    }
+
+    .webgrid-alternating-row {
+        background-color: #F5F5F5;
+        padding: 7px 7px 7px;
+    }
+
+    .col1Width {
+        width: 400px;
+    }
+
+    .col2Width {
+        width: 400px;
+    }
+
+    .col3Width {
+        width: 400px;
+    }
+
+    .hiddenCol {
+        display: none;
+    }
+
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        $('.delete-item').on('click', function () {
+
+            var tr = $(this).parents('tr');
+            var ID = tr.find("#lblID").text; //.val();
+            alert(ID);
+
+            var PropertyAddress = tr.find("#lblpropAddress").val();
+            var DateSaved = tr.find("#lblDate").val();
+            alert(DateSaved);
+
+            tr.find('#lblID').text(ID)
+            tr.find("#lblpropAddress").text(PropertyAddress);
+            tr.find("#lblDate").text(DateSaved);
+
+            tr.find('.delete-mode, .display-mode').toggle();
+
+            var DeleteSavedProperty =
+            {
+                "ID": ID
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/Properties/JsonDelete',
+                data: JSON.stringify(DeleteSavedProperty),
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if (data.toUpperCase().includes('THRESHOLD'))
+                        alert(data);
+                    else
+                        alert(data);
+                    //assume successful save above threshold limit
+                }
+            });
+        });
+    });
+</script>
+
+
+@{
+    var webGrid = new WebGrid(Model, canPage: false);
 }
 
-</table>
+<div id="gridContent" style="align-content:center; padding:20px; ">
+    @webGrid.GetHtml(           tableStyle: "webgrid-table",
+                                headerStyle: "webgrid-header",
+                                footerStyle: "webgrid-footer",
+                                alternatingRowStyle: "webgrid-alternating-row",
+                                selectedRowStyle: "webgrid-selected-row",
+                                rowStyle: "webgrid-row-style",
+                                mode: WebGridPagerModes.All,
+                                columns:
+                                grid.Columns(
+                                    grid.Column("ID", "Id", format: @<text> <span class="display-mode"><label id="lblID">@item.ID</label></span> </text>, style: "col1Width"),
+                                    grid.Column("PropertyAddress", "Property Address", format: @<text>  <span class="display-mode"><label id="lblpropAddress">@item.PropertyAddress</label></span> </text>, style: "col1Width"),
+                                    grid.Column("CreatedByDate", "Date Saved", format: @<text> <span class="display -mode"><label id="lblDate">@item.CreatedByDate</label></span> </text>, style: "col3Width"),
+                                                            grid.Column("Action", format: @<text>
+                                                                <button class="delete-item">Delete</button>
+                                                            </text>, style: "col3Width", canSort: false)
+
+
+                                                                        )
+
+                                                            )
+</div>
