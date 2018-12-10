@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressQuery.cs" />
+    <Compile Include="DTOs\ObservationDTO.cs" />
     <Compile Include="DTOs\PropertyDTO.cs" />
     <Compile Include="DTOs\SavedPropertyDTO.cs" />
     <Compile Include="DTOs\SearchHistoryDTO.cs" />
