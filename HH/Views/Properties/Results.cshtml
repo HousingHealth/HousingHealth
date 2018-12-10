@@ -2,8 +2,8 @@
 
 <div id="form-fields">
 
-     <br/>
-    
+    <br />
+
     <div id="number" class="form-group">
         @Html.DisplayNameFor(m => m.Number)
         : @Html.DisplayFor(m => m.Number)
@@ -126,11 +126,21 @@
     <div class="button">
         <input type="button" value="Search For Another Property" onclick="location.href='@Url.Action("Search", "Properties")'" class="btn btn-default" />
     </div>
+    <br />
+    <div class="button">
+        <input type="submit" value="Save This Property" onclick="location.href='@Url.Action("SavedProperties", "Properties")'" class="btn btn-default" />
+    </div>
+    <br />
 
     <div class="button">
-        <input type="submit" value="Save This Property" onclick="location.href='@Url.Action("SavedProperties", "Properties", new { id = Model.ID })'">
+        <input type="button" value="Save Property to Compare" onclick="location.href='@Url.Action("SavePropToCompare", "Properties", new { ID = Model.ID })'" onclick="location.href='@Url.Action("CompareProp", "Properties")'" class="btn btn-default" />
     </div>
+    <br />
+    <div class="button">
+        <input type="button" value="Compare Properties" onclick="location.href='@Url.Action("CompareProp", "Properties", new { ID = Model.ID })'" class="btn btn-default" />
     </div>
+
+</div>
 <div class="map">
     @{ Html.RenderPartial("~/Views/Properties/SearchAddr.cshtml"); }
 </div>

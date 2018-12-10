@@ -20,6 +20,7 @@ namespace HH.DBQueries
                         orderby prop.street, prop.number
                         select new PropertyDTO
                         {
+                            ID = prop.ID,
                             IsActive = prop.IsActive,
                             CreatedByDate = prop.CreatedByDate,
                             Parcel = prop.parcel,

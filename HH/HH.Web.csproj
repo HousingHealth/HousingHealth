@@ -275,6 +275,7 @@
     <Content Include="Views\Properties\Map.cshtml" />
     <Content Include="Views\Properties\SearchAddr.cshtml" />
     <Content Include="Views\Properties\SavedProperties.cshtml" />
+    <Content Include="Views\Properties\CompareProp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
