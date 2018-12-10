@@ -2,8 +2,13 @@
 
 <div id="form-fields">
 
-     <br/>
-    
+    <br />
+
+    <div id="ID" class="form-group">
+        @Html.HiddenFor(m => m.ID)
+         @Html.HiddenFor(m => m.ID)
+    </div>
+
     <div id="number" class="form-group">
         @Html.DisplayNameFor(m => m.Number)
         : @Html.DisplayFor(m => m.Number)
@@ -128,9 +133,9 @@
     </div>
 
     <div class="button">
-        <input type="submit" value="Save This Property" onclick="location.href='@Url.Action("SavedProperties", "Properties", new { id = Model.ID })'">
+        <input type="submit" value="Save This Property" onclick="location.href='@Url.Action("SaveProperty", "Properties", new { id = Model.ID })'" class="btn btn-default">
     </div>
-    </div>
-<div class="map">
-    @{ Html.RenderPartial("~/Views/Properties/SearchAddr.cshtml"); }
 </div>
+@*<div class="map">
+    @{ Html.RenderPartial("~/Views/Properties/SearchAddr.cshtml"); }
+</div>*@
