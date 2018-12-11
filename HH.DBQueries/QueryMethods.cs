@@ -44,7 +44,7 @@ namespace HH.DBQueries
                                 MAIL_STATE = prop.MAIL_STATE,
                                 MAIL_ZIPCODE = prop.MAIL_ZIPCODE,
                                 TOTAL_NET_DELQ_BALANCE = prop.TOTAL_NET_DELQ_BALANCE
-                            }).First();
+                            }).FirstOrDefault();
 
             return propinfo;
         }

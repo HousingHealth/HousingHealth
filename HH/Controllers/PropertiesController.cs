@@ -1,14 +1,12 @@
 ﻿using HH.DB.Models;
-using System.Collections.Generic;
-using HH.ViewModels;
-using System;
-using System.Net;
-using System.Web.Mvc;
 using HH.DBQueries;
 using HH.DBQueries.DTOs;
+using HH.ViewModels;
 using Microsoft.AspNet.Identity;
-using System.ComponentModel.DataAnnotations;
+using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Web.Mvc;
 
 
 namespace HH.Controllers
@@ -76,10 +74,17 @@ namespace HH.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-            }
-           
+            }           
 
             PropertyDTO res = qm.GetPropertyInfo(pr.Number, pr.Street);
+
+            if (res == null)
+            {
+                ViewBag.Msg = "No Record found for this property address.  Please try again.";
+                return View("Results");
+            }
+
+
             qm.SaveSearchHistory(res.ID, User.Identity.GetUserId());
 
             pr.ID = res.ID;
@@ -180,20 +185,19 @@ namespace HH.Controllers
         {
             return View();
         }
-
-        public ActionResult SavePropToCompare(int ID)
+        
+        public ActionResult SavePropToCompare(int? ID)
         {
             Session["ComparePropIDs"] += ID.ToString() + ",";
-            return View();
+            return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
         }
 
         public ActionResult CompareProp()
         {
-            //string sessions = Session["CompareProp"].ToString();
-            //string[] arSessions = Sessions.Split();
+            //string ses = Session["ComparePropIDs"].ToString();
+            //string[] arSessions = ses.Split(',');
             string[] arSessions = new string[] { "1", "2", "3", "4" };
-
-
+            
             List<PropertiesViewModels> vmList = new List<PropertiesViewModels>();
 
             QueryMethods qm = new QueryMethods();
@@ -232,6 +236,7 @@ namespace HH.Controllers
             return View(vmList);
         }
 
+
         [HttpPost]
         public ActionResult Create([Bind(Include = "number, street")] ViewModels.PropertiesViewModels results)
         {
@@ -259,8 +264,6 @@ namespace HH.Controllers
 
         public ActionResult SearchAddr()
         {
-            //string addr = "2418 woodland Ave,Cleveland, Oh";
-            //ViewBag.Address = addr;
             return View();
         }
 
@@ -274,8 +277,6 @@ namespace HH.Controllers
 
         public ActionResult DisplayMarkers()
         {
-            //AddressQuery addr = new AddressQuery();
-            //ViewBag.FullAddressList = addr.GetAddressInfo();
             return View();
         }
 
