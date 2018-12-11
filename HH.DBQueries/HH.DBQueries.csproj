@@ -58,6 +58,7 @@
     <Compile Include="AddressQuery.cs" />
     <Compile Include="DTOs\ObservationDTO.cs" />
     <Compile Include="DTOs\PropertyDTO.cs" />
+    <Compile Include="DTOs\SavedPropertyDTO.cs" />
     <Compile Include="DTOs\SearchHistoryDTO.cs" />
     <Compile Include="QueryMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

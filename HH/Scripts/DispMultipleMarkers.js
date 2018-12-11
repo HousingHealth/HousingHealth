@@ -10,19 +10,15 @@ var mapOptions = {
 var geocoder = new google.maps.Geocoder();
 var map = new google.maps.Map(document.getElementById('gmap_canvas'), mapOptions);
 var bounds = new google.maps.LatLngBounds();
-var locations = [
-    '601 Lakeside Ave, Cleveland, OH',
-    '3409 Woodland Ave., Cleveland, OH',
-    '1300 Crestline Ave, Cleveland, OH ',
-    '10900 Euclid Ave, Cleveland, OH',
-    '5300 Riverside Dr, Cleveland, OH',
-    '11030 East Blvd, Cleveland, OH',
-    '2000 Sycamore St, Cleveland, OH',
-    '3900 Wildlife Way, Cleveland, OH',
-    '601 Erieside Ave, Cleveland, OH',
-    'Public Square, Cleveland, OH'
 
-];
+var locations = [
+                '601 Lakeside Ave, Cleveland, OH',
+                //'1 St. Clair Ave NE Cleveland, OH',
+                '3409 Woodland Ave, Cleveland, OH',
+                '1300 Crestline Ave, Cleveland, OH ',
+                'Public Square, Cleveland, OH'
+                ];
+
 var nextAddress = 0;
 
 // Main Function
@@ -51,7 +47,6 @@ function geocodeAddress(address, next) {
             if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
                 nextAddress--;
                 delay++;
-            } else {
             }
         }
         next();
@@ -62,7 +57,7 @@ function createMarker(add, lat, lng) {
     var contentString = add;
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(lat, lng),
-        map: map,
+        map: map
     });
 
     google.maps.event.addListener(marker, 'click', function () {
@@ -71,7 +66,6 @@ function createMarker(add, lat, lng) {
     });
 
     bounds.extend(marker.position);
-
 }
 
 

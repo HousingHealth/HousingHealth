@@ -44,7 +44,7 @@ namespace HH.DBQueries
                                 MAIL_STATE = prop.MAIL_STATE,
                                 MAIL_ZIPCODE = prop.MAIL_ZIPCODE,
                                 TOTAL_NET_DELQ_BALANCE = prop.TOTAL_NET_DELQ_BALANCE
-                            }).First();
+                            }).FirstOrDefault();
 
             return propinfo;
         }
@@ -144,8 +144,6 @@ namespace HH.DBQueries
 
         public IEnumerable<SearchHistoryDTO> GetSearchHistories()
         {
-            //ApplicationUser userRec = db.us.Users.Find();
-
             var SearchHistoryresults = (from sh in db.SearchHistory
                                         select new SearchHistoryDTO
                                         {
@@ -173,10 +171,82 @@ namespace HH.DBQueries
                 sh.CreatedByDate = DateTime.Now;
                 sh.IsActive = true;
                 db.SearchHistory.Add(sh);
+                db.SaveChanges();     
+            }           
+        }
+
+
+        public string DeleteProperty(int PropertyID, string UserID)
+        {
+            string Message = "";
+
+            SavedProperties rec = db.SavedProperties.Where(p => p.ID == PropertyID && p.CreatedByUser.Id == UserID).FirstOrDefault();
+
+            if (rec != null)
+            {
+                db.SavedProperties.Remove(rec);
                 db.SaveChanges();
+                Message = "Property has been deleted";
+                return Message;
+            }
+            else
+            {
+                Message = "Saved Property does not exist";
+                return Message;
             }
         }
 
 
+        public string SaveProperty(int PropertyID, string UserID)
+        {
+            string Message = "";
+            ApplicationUser userRec = db.Users.Find(UserID);
+
+            var rec = db.SavedProperties.Where(p => p.Property.ID == PropertyID && p.CreatedByUser.Id == userRec.Id).FirstOrDefault();
+
+            if (rec == null)
+            {
+                Properties propRec = db.Properties.Find(PropertyID);
+
+                SavedProperties spRec = new SavedProperties();
+                spRec.Property = propRec;
+                spRec.CreatedByUser = userRec;
+                spRec.CreatedByDate = DateTime.Now;
+                spRec.IsActive = propRec.IsActive;
+
+                db.SavedProperties.Add(spRec);
+                db.SaveChanges();
+                Message = "Property has been saved";
+                return Message;
+            }
+            else
+            {
+                Message = "Property has already been saved";
+                return Message;
+            }
+
+        }
+
+
+        public IEnumerable<SavedPropertyDTO> GetSavedProperties(string UserID)
+        {
+            ApplicationUser userRec = db.Users.Find(UserID);
+
+            var results = (from sp in db.SavedProperties
+                           where sp.CreatedByUser.Id == UserID
+                           select new SavedPropertyDTO
+                           {
+                               ID = sp.ID,
+                               IsActive = sp.IsActive,
+                               CreatedByDate = sp.CreatedByDate,
+                               PropertyAddress = sp.Property.number + " " + sp.Property.street,
+                               propertyRec = sp.Property
+                           }
+                          ).ToList();
+
+            return results;
+        }
+
+      
     }
 }
