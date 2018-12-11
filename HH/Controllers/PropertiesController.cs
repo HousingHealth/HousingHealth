@@ -1,13 +1,11 @@
 ﻿using HH.DB.Models;
-using HH.DBQueries;
-using HH.DBQueries;
-using HH.DBQueries.DTOs;
 using HH.ViewModels;
 using HH.DBQueries;
 using HH.DBQueries.DTOs;
 using System;
 using System.Net;
 using System.Web.Mvc;
+using HH.Business;
 
 namespace HH.Controllers
 {
@@ -32,17 +30,21 @@ namespace HH.Controllers
             QueryMethods qm = new QueryMethods();
             
             ObservationsDTO obsDTO = qm.GetLeadRisk((int)propertyID);
+            PropertyDTO propDTO = qm.GetPropertyInfoByID((int)propertyID);
+
+
+             if ((propDTO.Yrbuilt == 1978) || (propDTO.Yrbuilt > 1978))
+            ViewBag.Message = " Property has No Lead Risk";
+
+             else
+                 ViewBag.Message = "Property has Lead Risk ";
+
+
+            LeadRiskVM lrVM = new LeadRiskVM();
+            ViewBag.YearBuilt = propDTO.Yrbuilt;           
+            ViewBag.ObservationDate = obsDTO.TimeStamp.Date;
             
-
-             //2. Copy fields from the query in step 1 into LeadRiskVM
-             LeadRiskVM lrVM = new LeadRiskVM();
-            lrVM.yrbuilt = obsDTO.yrbuilt;           
-            lrVM.TimeStamp = obsDTO.TimeStamp;
-            lrVM.name = obsDTO.ObservationTypes;
-        
-               
-
-
+          
             return View(lrVM);
         }
 
@@ -136,7 +138,7 @@ namespace HH.Controllers
             return View();
         }
 
-        }
+        
 
         public ActionResult DisplayMarkers()
         {

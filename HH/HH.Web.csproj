@@ -297,6 +297,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HH.Business\HH.Business.csproj">
+      <Project>{28ae6301-04d9-4cd6-bbcc-73536b4f218e}</Project>
+      <Name>HH.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HH.DBQueries\HH.DBQueries.csproj">
       <Project>{902ed133-354c-4368-b1e0-89431c5e131e}</Project>
       <Name>HH.DBQueries</Name>
