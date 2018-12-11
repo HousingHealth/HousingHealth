@@ -196,7 +196,7 @@ namespace HH.Controllers
         {
             //string ses = Session["ComparePropIDs"].ToString();
             //string[] arSessions = ses.Split(',');
-            string[] arSessions = new string[] { "1", "2", "3", "4" };
+            string[] arSessions = new string[] { "100", "202", "303", "404" };
             
             List<PropertiesViewModels> vmList = new List<PropertiesViewModels>();
 
