@@ -5,6 +5,7 @@ using HH.ViewModels;
 using System;
 using System.Net;
 using System.Web.Mvc;
+using System.Collections.Generic;
 
 namespace HH.Controllers
 {
@@ -117,6 +118,99 @@ namespace HH.Controllers
             AddressQuery addr = new AddressQuery();
             ViewBag.FullAddressList = addr.GetAddressInfo();
             return View();
+        }
+
+        public ActionResult HistoryScoreResult()
+        {
+            
+            return View();
+
+        }
+
+
+        public ActionResult HistoryScoreSearch()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult HistoryScoreSearch(HistoryScoreViewModel vm)
+        {
+            QueryMethods qm = new QueryMethods();
+
+            if (vm.Parcel != null)
+            {
+                List<HistoryScoreDTO> obList = qm.HistoryScoreSearchByParcel(vm.Parcel);
+
+                List<HistoryScoreViewModel> vmList = new List<HistoryScoreViewModel>();
+
+                foreach (var item in obList)
+                {
+                    HistoryScoreViewModel vmRec = new HistoryScoreViewModel();
+                    vmRec.Number = item.Number;
+                    vmRec.Street = item.Street;
+                    vmRec.Parcel = item.Parcel;
+                    vmRec.RateOfComplaints = item.RateOfComplaints;
+                    vmRec.NumViolations = item.NumViolations;
+                    vmRec.PaceOfResolution = item.PaceOfResolution;
+
+                    vmList.Add(vmRec);
+                }
+
+                return View("HistoryScoreResult", vmList);
+                
+            }
+            else if (vm.Properties.ID != 0)
+            {
+                List<HistoryScoreDTO> obList = qm.HistoryScoreSearchByIDandParcel(vm.Properties.ID, vm.Parcel);
+
+                List<HistoryScoreViewModel> vmList = new List<HistoryScoreViewModel>();
+
+                foreach (var item in obList)
+                {
+                    HistoryScoreViewModel vmRec = new HistoryScoreViewModel();
+                    vmRec.Number = item.Number;
+                    vmRec.Street = item.Street;
+                    vmRec.Parcel = item.Parcel;
+                    vmRec.RateOfComplaints = item.RateOfComplaints;
+                    vmRec.NumViolations = item.NumViolations;
+                    vmRec.PaceOfResolution = item.PaceOfResolution;
+                    vmRec.ID = item.ID;
+
+                    vmList.Add(vmRec);
+                }
+
+                return View("HistoryScoreResult", vmList);
+
+            }
+            else if (vm.Number != null)
+            {
+
+                List<HistoryScoreDTO> obList = qm.HistoryScoreSearchByNumber(vm.Number);
+
+                List<HistoryScoreViewModel> vmList = new List<HistoryScoreViewModel>();
+
+                foreach (var item in obList)
+                {
+                    HistoryScoreViewModel vmRec = new HistoryScoreViewModel();
+                    vmRec.Number = item.Number;
+                    vmRec.Street = item.Street;
+                    vmRec.Parcel = item.Parcel;
+                    vmRec.RateOfComplaints = item.RateOfComplaints;
+                    vmRec.NumViolations = item.NumViolations;
+                    vmRec.PaceOfResolution = item.PaceOfResolution;
+
+
+                    vmList.Add(vmRec);
+                }
+
+                return View("HistoryScoreResult", vmList);
+
+            }
+            else
+                return null;
         }
 
 

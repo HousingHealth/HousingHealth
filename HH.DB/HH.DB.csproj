@@ -82,9 +82,14 @@
     <Compile Include="Migrations\201812041558321_Initial.Designer.cs">
       <DependentUpon>201812041558321_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812102150089_Add_HistoryScore_Table.cs" />
+    <Compile Include="Migrations\201812102150089_Add_HistoryScore_Table.Designer.cs">
+      <DependentUpon>201812102150089_Add_HistoryScore_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseFields.cs" />
+    <Compile Include="Models\HistoryScore.cs" />
     <Compile Include="Models\SavedProperties.cs" />
     <Compile Include="Models\HousingHealthDB.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -105,6 +110,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812041558321_Initial.resx">
       <DependentUpon>201812041558321_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812102150089_Add_HistoryScore_Table.resx">
+      <DependentUpon>201812102150089_Add_HistoryScore_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

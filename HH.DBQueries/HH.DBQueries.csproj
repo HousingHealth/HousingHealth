@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressQuery.cs" />
+    <Compile Include="DTOs\HistoryScoreDTO.cs" />
     <Compile Include="DTOs\PropertyDTO.cs" />
     <Compile Include="QueryMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

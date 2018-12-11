@@ -87,24 +87,58 @@ namespace HH.DBQueries
             return propinfo;
         }
 
+        public List<HistoryScoreDTO> HistoryScoreSearchByParcel(string Parcel)
+        {
+            var historyscoreinfo = (from historyscore in db.HistoryScores
+                                    where historyscore.Properties.parcel == Parcel
+                                    select new HistoryScoreDTO
+                                    {
+                                        Parcel = historyscore.Properties.parcel,
+                                        Number = historyscore.Properties.number,
+                                        Street = historyscore.Properties.street,
+                                        NumViolations = historyscore.NumViolations,
+                                        PaceOfResolution = historyscore.PaceOfResolution,
+                                        RateOfComplaints = historyscore.RateOfComplaints
+
+                                    }).ToList();
+
+            return historyscoreinfo;
+        }
 
 
-        //public PropertyDTO GetSavedProperties(int ID)
-        //{
-        //    var propinfo = (from prop in db.SavedProperties
-        //                    where prop.ID == ID
-        //                    orderby prop.street, prop.number
-        //                    select new PropertyDTO
-        //                    {
-        //                        IsActive = prop.IsActive,
-        //                        CreatedByDate = prop.CreatedByDate,
-        //                        Date = prop.date,
-        //                        Number = prop.number,
-        //                        Street = prop.street,
-        //                    }).First();
+        public List<HistoryScoreDTO> HistoryScoreSearchByNumber(string Number)
+        {
+            var historyscoreinfo = (from historyscore in db.HistoryScores
+                                    where historyscore.Properties.number == Number
+                                    select new HistoryScoreDTO
+                                    {
+                                        Parcel = historyscore.Properties.parcel,
+                                        Number = historyscore.Properties.number,
+                                        Street = historyscore.Properties.street,
+                                    
 
-        //    return propinfo;
-        //}
+                                    }).ToList();
+
+            return historyscoreinfo;
+        }
+        public List<HistoryScoreDTO> HistoryScoreSearchByIDandParcel(int ID, string Parcel)
+        {
+            var historyscoreinfo = (from historyscore in db.HistoryScores
+                                    where historyscore.Properties.ID == ID || historyscore.Properties.parcel == Parcel
+                                    select new HistoryScoreDTO
+                                    {
+                                        Parcel = historyscore.Properties.parcel,
+                                        Number = historyscore.Properties.number,
+                                        Street = historyscore.Properties.street,
+                                        ID = historyscore.Properties.ID,
+                                        NumViolations = historyscore.NumViolations,
+                                        PaceOfResolution = historyscore.PaceOfResolution,
+                                        RateOfComplaints = historyscore.RateOfComplaints
+                                        
+                                    }).ToList();
+
+            return historyscoreinfo;
+        }
     }
 }
 
