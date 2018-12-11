@@ -1,4 +1,5 @@
 ﻿using HH.DB.Models;
+using HH.ViewModels;
 using HH.DBQueries;
 using HH.DBQueries.DTOs;
 using HH.ViewModels;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
+using HH.Business;
 
 
 namespace HH.Controllers

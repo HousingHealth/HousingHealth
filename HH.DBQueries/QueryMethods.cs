@@ -246,7 +246,22 @@ namespace HH.DBQueries
 
             return results;
         }
+        //    return propinfo;
+        //}
 
-      
+        public ObservationDTO GetLeadRisk(int propertyID)
+        {
+            var Observationsinfo = (from obs in db.Observations
+                                    where obs.Properties.ID == propertyID
+                                    orderby propertyID
+                                    select new ObservationDTO
+                                    {
+                                        Observation_Types = obs.Observation_Types,
+                                        time_stamp = obs.time_stamp                                    
+                                    }).First();
+
+            return Observationsinfo;
+        }
     }
 }
+
