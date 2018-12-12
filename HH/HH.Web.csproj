@@ -197,6 +197,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ObservationsController.cs" />
+    <Compile Include="Controllers\ObservationtypeController.cs" />
     <Compile Include="Controllers\PropertiesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -205,8 +207,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\HistoryScoreViewModel.cs" />
+    <Compile Include="ViewModels\LeadRiskVM.cs" />
     <Compile Include="ViewModels\SavedPropertiesVM.cs" />
+    <Compile Include="ViewModels\ObservationsViewModel.cs" />
     <Compile Include="ViewModels\PropertiesViewModel.cs" />
+    <Compile Include="ViewModels\SearchHistoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -276,10 +281,21 @@
     <Content Include="Views\Properties\Results.cshtml" />
     <Content Include="Views\Properties\Map.cshtml" />
     <Content Include="Views\Properties\SearchAddr.cshtml" />
+    <Content Include="Views\Observations\Create.cshtml" />
+    <Content Include="Views\Observations\ObservationSearch.cshtml" />
+    <Content Include="Views\Observationtype\Create.cshtml" />
+    <Content Include="Views\Observationtype\Delete.cshtml" />
+    <Content Include="Views\Observationtype\Details.cshtml" />
+    <Content Include="Views\Observationtype\Edit.cshtml" />
+    <Content Include="Views\Observationtype\Index.cshtml" />
+    <Content Include="Views\Observations\ObservationResults.cshtml" />
     <Content Include="Views\Properties\DisplayMarkers.cshtml" />
     <Content Include="Views\Properties\SavedProperties.cshtml" />
     <Content Include="Views\Properties\HistoryScoreSearch.cshtml" />
     <Content Include="Views\Properties\HistoryScoreResult.cshtml" />
+    <Content Include="Views\Properties\CompareProp.cshtml" />
+    <Content Include="Views\Properties\SearchHistory.cshtml" />
+    <Content Include="Views\Properties\LeadRisk.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -298,6 +314,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HH.Business\HH.Business.csproj">
+      <Project>{28ae6301-04d9-4cd6-bbcc-73536b4f218e}</Project>
+      <Name>HH.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HH.DBQueries\HH.DBQueries.csproj">
       <Project>{902ed133-354c-4368-b1e0-89431c5e131e}</Project>
       <Name>HH.DBQueries</Name>

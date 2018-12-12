@@ -1,0 +1,642 @@
+﻿@model IEnumerable<HH.ViewModels.PropertiesViewModels>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Compare These Properties</h2>
+
+<table width="100%">
+    @{
+        HH.ViewModels.PropertiesViewModels[] ar = Model.ToArray();
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Number")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].Number)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].Number)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].Number)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].Number)
+                </td>
+            }
+        </tr>
+
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Street")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].Street)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].Street)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].Street)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].Street)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Year built")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(Convert.ToString(ar[0].Yrbuilt))
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(Convert.ToString(ar[1].Yrbuilt))
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(Convert.ToString(ar[2].Yrbuilt))
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(Convert.ToString(ar[3].Yrbuilt))
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Parcel")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].Parcel)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].Parcel)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].Parcel)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].Parcel)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Property Class")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].Pclass)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].Pclass)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].Pclass)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].Pclass)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Land Use Code")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].Luc)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].Luc)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].Luc)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].Luc)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Land Use Code Description")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].Luc_descr)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].Luc_descr)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].Luc_descr)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].Luc_descr)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Census 2010 Block")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].BLOCK10)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].BLOCK10)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].BLOCK10)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].BLOCK10)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Census 2010 Block Group")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].BLOCKGR10)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].BLOCKGR10)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].BLOCKGR10)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].BLOCKGR10)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Date")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(Convert.ToString(ar[0].Date.ToShortDateString()))
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(Convert.ToString(ar[1].Date.ToShortDateString()))
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(Convert.ToString(ar[2].Date.ToShortDateString()))
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(Convert.ToString(ar[3].Date.ToShortDateString()))
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Last Sale Amount")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(Convert.ToString(ar[0].Lsaleamt))
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(Convert.ToString(ar[1].Lsaleamt))
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(Convert.ToString(ar[2].Lsaleamt))
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(Convert.ToString(ar[3].Lsaleamt))
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("T-owner")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].Towner)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].Towner)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].Towner)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].Towner)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Primary Owner")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].MAILNAME)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].MAILNAME)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].MAILNAME)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].MAILNAME)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Secondary Owner")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].Mailname1)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].Mailname1)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].Mailname1)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].Mailname1)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Owner Street Number")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].MAIL_STREET_NUMBER)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].MAIL_STREET_NUMBER)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].MAIL_STREET_NUMBER)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].MAIL_STREET_NUMBER)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Owner Street Direction")
+            </td>
+
+            <td width="20%">
+                @{
+                    var test2 = ar[0].MAIL_STREET_DIRECTION;
+                    if (test2 != null)
+                    {
+                        Html.DisplayName(ar[0].MAIL_STREET_DIRECTION);
+                    }
+                }
+            </td>
+
+            <td width="20%">
+                @{
+                    var test3 = ar[1].MAIL_STREET_DIRECTION;
+                    if (test3 != null)
+                    {
+                        Html.DisplayName(ar[1].MAIL_STREET_DIRECTION);
+                    }
+                }
+            </td>
+
+            @if (ar[2].MAIL_STREET_DIRECTION != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].MAIL_STREET_DIRECTION)
+                </td>
+            }
+
+            @if (ar[3].MAIL_STREET_DIRECTION != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].MAIL_STREET_DIRECTION)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Owner Street Name")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].MAIL_STREET_NAME)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].MAIL_STREET_NAME)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].MAIL_STREET_NAME)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].MAIL_STREET_NAME)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Owner Street SUFFIX")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].MAIL_STREET_SUFFIX)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].MAIL_STREET_SUFFIX)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].MAIL_STREET_SUFFIX)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].MAIL_STREET_SUFFIX)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Owner City")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].MAIL_CITY)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].MAIL_CITY)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].MAIL_CITY)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].MAIL_CITY)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Owner State")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].MAIL_STATE)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].MAIL_STATE)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].MAIL_STATE)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].MAIL_STATE)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Owner Zipcode")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[0].MAIL_ZIPCODE)
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(ar[1].MAIL_ZIPCODE)
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[2].MAIL_ZIPCODE)
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(ar[3].MAIL_ZIPCODE)
+                </td>
+            }
+        </tr>
+
+        <tr>
+            <td width="20%">
+                @Html.DisplayName("Total Net Delinquent Balance")
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(Convert.ToString(ar[0].TOTAL_NET_DELQ_BALANCE))
+            </td>
+
+            <td width="20%">
+                @Html.DisplayName(Convert.ToString(ar[1].TOTAL_NET_DELQ_BALANCE))
+            </td>
+
+            @if (ar[2] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(Convert.ToString(ar[2].TOTAL_NET_DELQ_BALANCE))
+                </td>
+            }
+
+            @if (ar[3] != null)
+            {
+                <td width="20%">
+                    @Html.DisplayName(Convert.ToString(ar[3].TOTAL_NET_DELQ_BALANCE))
+                </td>
+            }
+        </tr>
+    }
+</table>

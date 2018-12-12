@@ -44,5 +44,15 @@
     <Compile Include="Calculations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HH.DBQueries\HH.DBQueries.csproj">
+      <Project>{902ed133-354c-4368-b1e0-89431c5e131e}</Project>
+      <Name>HH.DBQueries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HH.DB\HH.DB.csproj">
+      <Project>{85d6251e-1c68-47b7-bc09-061189a81557}</Project>
+      <Name>HH.DB</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
