@@ -19,5 +19,6 @@ namespace HH.DB.Models
         public DbSet<Observations> Observations { get; set; }
         public DbSet<SavedProperties> SavedProperties { get; set; }
         public DbSet<SearchHistory> SearchHistory { get; set; }        
+        public DbSet<HistoryScore> HistoryScores { get; set; }
     }
 }

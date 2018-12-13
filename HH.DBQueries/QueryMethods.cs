@@ -44,7 +44,7 @@ namespace HH.DBQueries
                                 MAIL_STATE = prop.MAIL_STATE,
                                 MAIL_ZIPCODE = prop.MAIL_ZIPCODE,
                                 TOTAL_NET_DELQ_BALANCE = prop.TOTAL_NET_DELQ_BALANCE
-                            }).First();
+                            }).FirstOrDefault();
 
             return propinfo;
         }
@@ -243,10 +243,46 @@ namespace HH.DBQueries
                                propertyRec = sp.Property
                            }
                           ).ToList();
+                                    }).ToList();
 
+            return historyscoreinfo;
+        }
+        public List<HistoryScoreDTO> HistoryScoreSearchByIDandParcel(int ID, string Parcel)
+        {
+            var historyscoreinfo = (from historyscore in db.HistoryScores
+                                    where historyscore.Properties.ID == ID || historyscore.Properties.parcel == Parcel
+                                    select new HistoryScoreDTO
+                                    {
+                                        Parcel = historyscore.Properties.parcel,
+                                        Number = historyscore.Properties.number,
+                                        Street = historyscore.Properties.street,
+                                        ID = historyscore.Properties.ID,
+                                        NumViolations = historyscore.NumViolations,
+                                        PaceOfResolution = historyscore.PaceOfResolution,
+                                        RateOfComplaints = historyscore.RateOfComplaints
+                                        
+                                    }).ToList();
+
+            return historyscoreinfo;
+        }
             return results;
         }
+        //    return propinfo;
+        //}
 
-      
+        public ObservationDTO GetLeadRisk(int propertyID)
+        {
+            var Observationsinfo = (from obs in db.Observations
+                                    where obs.Properties.ID == propertyID
+                                    orderby propertyID
+                                    select new ObservationDTO
+                                    {
+                                        Observation_Types = obs.Observation_Types,
+                                        time_stamp = obs.time_stamp                                    
+                                    }).First();
+
+            return Observationsinfo;
+        }
     }
 }
+

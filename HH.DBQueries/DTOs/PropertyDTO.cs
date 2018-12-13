@@ -37,3 +37,6 @@ namespace HH.DBQueries.DTOs
         public string TOTAL_NET_DELQ_BALANCE { get; set; }
     }
 }
+
+    
+

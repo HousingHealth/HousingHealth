@@ -1,0 +1,48 @@
+﻿@model IEnumerable<HH.ViewModels.HistoryScoreViewModel>
+
+
+
+<h2>History Score Result</h2>
+
+
+
+@{
+    ViewBag.Title = "HistoryScoreResult";
+}
+
+
+@*<h2 style="color :red">@ViewBag.Title</h2>
+<h4><b>History Score</b></h4>*@
+
+<br />
+<table class="table" style="width: 1200px;">
+    <tr>
+
+        <th>
+            <b>Rate of Complaints</b>
+        </th>
+        <th>
+            <b>Number of Violations</b>
+        </th>
+        <th>
+            <b>Pace of Resolution</b>
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.RateOfComplaints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumViolations)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaceOfResolution)
+            </td>
+        </tr>
+    }
+</table>

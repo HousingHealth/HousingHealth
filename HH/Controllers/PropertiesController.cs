@@ -1,13 +1,14 @@
 ﻿using HH.DB.Models;
-using System.Collections.Generic;
 using HH.ViewModels;
-using System;
-using System.Net;
-using System.Web.Mvc;
 using HH.DBQueries;
 using HH.DBQueries.DTOs;
+using HH.ViewModels;
 using Microsoft.AspNet.Identity;
-using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Web.Mvc;
+using HH.Business;
 using System.Collections.Generic;
 
 
@@ -76,10 +77,17 @@ namespace HH.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-            }
-           
+            }           
 
             PropertyDTO res = qm.GetPropertyInfo(pr.Number, pr.Street);
+
+            if (res == null)
+            {
+                ViewBag.Msg = "No Record found for this property address.  Please try again.";
+                return View("Results");
+            }
+
+
             qm.SaveSearchHistory(res.ID, User.Identity.GetUserId());
 
             pr.ID = res.ID;
@@ -180,20 +188,19 @@ namespace HH.Controllers
         {
             return View();
         }
-
-        public ActionResult SavePropToCompare(int ID)
+        
+        public ActionResult SavePropToCompare(int? ID)
         {
             Session["ComparePropIDs"] += ID.ToString() + ",";
-            return View();
+            return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
         }
 
         public ActionResult CompareProp()
         {
-            //string sessions = Session["CompareProp"].ToString();
-            //string[] arSessions = Sessions.Split();
-            string[] arSessions = new string[] { "1", "2", "3", "4" };
-
-
+            //string ses = Session["ComparePropIDs"].ToString();
+            //string[] arSessions = ses.Split(',');
+            string[] arSessions = new string[] { "100", "202", "303", "404" };
+            
             List<PropertiesViewModels> vmList = new List<PropertiesViewModels>();
 
             QueryMethods qm = new QueryMethods();
@@ -232,6 +239,7 @@ namespace HH.Controllers
             return View(vmList);
         }
 
+
         [HttpPost]
         public ActionResult Create([Bind(Include = "number, street")] ViewModels.PropertiesViewModels results)
         {
@@ -259,8 +267,6 @@ namespace HH.Controllers
 
         public ActionResult SearchAddr()
         {
-            //string addr = "2418 woodland Ave,Cleveland, Oh";
-            //ViewBag.Address = addr;
             return View();
         }
 
@@ -274,34 +280,102 @@ namespace HH.Controllers
 
         public ActionResult DisplayMarkers()
         {
-            //AddressQuery addr = new AddressQuery();
-            //ViewBag.FullAddressList = addr.GetAddressInfo();
+            return View();
+        }
+
+        public ActionResult HistoryScoreResult()
+        {
+            
+            return View();
+
+        }
+
+
+        public ActionResult HistoryScoreSearch()
+        {
             return View();
         }
 
 
-        [HttpGet]
-        public ActionResult SearchHistory()
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult HistoryScoreSearch(HistoryScoreViewModel vm)
         {
-            string UserID = User.Identity.GetUserId();
             QueryMethods qm = new QueryMethods();
-            var results = qm.GetSearchHistories();
 
-            List<SearchHistoryViewModel> vmList = new List<SearchHistoryViewModel>();
-
-            foreach (var item in results)
+            if (vm.Parcel != null)
             {
-                vmList.Add(new SearchHistoryViewModel()
+                List<HistoryScoreDTO> obList = qm.HistoryScoreSearchByParcel(vm.Parcel);
+
+                List<HistoryScoreViewModel> vmList = new List<HistoryScoreViewModel>();
+
+                foreach (var item in obList)
                 {
-                    number = item.Number,
-                    street = item.Street,
-                    date = item.CreatedByDate,
+                    HistoryScoreViewModel vmRec = new HistoryScoreViewModel();
+                    vmRec.Number = item.Number;
+                    vmRec.Street = item.Street;
+                    vmRec.Parcel = item.Parcel;
+                    vmRec.RateOfComplaints = item.RateOfComplaints;
+                    vmRec.NumViolations = item.NumViolations;
+                    vmRec.PaceOfResolution = item.PaceOfResolution;
 
-                });
-            };
+                    vmList.Add(vmRec);
+                }
 
-            return View(vmList);
-                  
+                return View("HistoryScoreResult", vmList);
+                
+            }
+            else if (vm.Properties.ID != 0)
+            {
+                List<HistoryScoreDTO> obList = qm.HistoryScoreSearchByIDandParcel(vm.Properties.ID, vm.Parcel);
+
+                List<HistoryScoreViewModel> vmList = new List<HistoryScoreViewModel>();
+
+                foreach (var item in obList)
+                {
+                    HistoryScoreViewModel vmRec = new HistoryScoreViewModel();
+                    vmRec.Number = item.Number;
+                    vmRec.Street = item.Street;
+                    vmRec.Parcel = item.Parcel;
+                    vmRec.RateOfComplaints = item.RateOfComplaints;
+                    vmRec.NumViolations = item.NumViolations;
+                    vmRec.PaceOfResolution = item.PaceOfResolution;
+                    vmRec.ID = item.ID;
+
+                    vmList.Add(vmRec);
+                }
+
+                return View("HistoryScoreResult", vmList);
+
+            }
+            else if (vm.Number != null)
+            {
+
+                List<HistoryScoreDTO> obList = qm.HistoryScoreSearchByNumber(vm.Number);
+
+                List<HistoryScoreViewModel> vmList = new List<HistoryScoreViewModel>();
+
+                foreach (var item in obList)
+                {
+                    HistoryScoreViewModel vmRec = new HistoryScoreViewModel();
+                    vmRec.Number = item.Number;
+                    vmRec.Street = item.Street;
+                    vmRec.Parcel = item.Parcel;
+                    vmRec.RateOfComplaints = item.RateOfComplaints;
+                    vmRec.NumViolations = item.NumViolations;
+                    vmRec.PaceOfResolution = item.PaceOfResolution;
+
+
+                    vmList.Add(vmRec);
+                }
+
+                return View("HistoryScoreResult", vmList);
+
+            }
+            else
+                return null;
         }
+
+
     }
 }
