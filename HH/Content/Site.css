@@ -195,4 +195,20 @@ form-horizontal {
             text-align: left;
         }
 
+        .table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+            border: 1px solid black;
+        }
+
+        tr:nth-child(even) {
+            background-color: #4ddbff
+        }
 }
